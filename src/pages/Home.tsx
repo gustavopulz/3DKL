@@ -505,22 +505,18 @@ const Home = () => {
                 {/* Título e botão do form mobile */}
                 <div className="flex items-center justify-between mb-4 md:hidden">
                   <h4 className="text-2xl font-bold text-white">
-                    Peça um orçamento via e-mail
+                    Peça um orçamento
                   </h4>
-                  <a
-                    href="https://wa.me/19997404451" // Substitua pelo número real
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full font-medium shadow transition"
-                  >
-                    <img
-                      src={whatsappIcon}
-                      alt="WhatsApp"
-                      className="w-6 h-6"
-                    />
-                    Whatsapp
-                  </a>
                 </div>
+                <a
+                  href="https://wa.me/19997404451"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex md:hidden items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full font-medium shadow transition mb-4"
+                >
+                  <img src={whatsappIcon} alt="WhatsApp" className="w-6 h-6" />
+                  Whatsapp
+                </a>
                 <form className="bg-gray-800 rounded-lg p-8 shadow text-white flex flex-col gap-4 w-full justify-between border-4 border-gray-900 mt-0 h-full">
                   <div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
