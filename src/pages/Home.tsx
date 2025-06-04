@@ -1,7 +1,7 @@
 import React from 'react';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
+import whatsappIcon from '/public/whatsapp.svg';
 
-// Hook para detectar quando o elemento entra na tela
 function useInView<T extends HTMLElement = HTMLElement>(
   threshold = 0.1
 ): [React.RefObject<T>, boolean] {
@@ -22,11 +22,9 @@ function useInView<T extends HTMLElement = HTMLElement>(
     return () => observer.disconnect();
   }, [threshold]);
 
-  // Força o tipo para evitar erro de tipagem do React
   return [ref as React.RefObject<T>, isVisible];
 }
 
-// Componente para imagem de cliente com animação ao entrar na tela
 function ClienteImage({ src, alt }: { src: string; alt: string }) {
   const [imgRef, imgVisible] = useInView<HTMLImageElement>(0.2);
   return (
@@ -39,7 +37,6 @@ function ClienteImage({ src, alt }: { src: string; alt: string }) {
   );
 }
 
-// Componente para depoimento com animação ao entrar na tela
 function ClienteDepoimento({
   text,
   name,
@@ -131,7 +128,10 @@ const Home = () => {
     <div className="min-h-screen bg-gray-900 flex items-center overflow-x-hidden">
       <div className="w-full pl-12 pr-12 pt-20 lg:pl-64 lg:pr-64">
         <SectionInView>
-          <h2 className="text-4xl lg:text-5xl font-medium text-white mb-6 w-full lg:w-2/5">
+          <h2
+            id="inicio"
+            className="text-4xl lg:text-5xl font-medium text-white mb-6 w-full lg:w-2/5"
+          >
             Trazendo sua ideia para realidade
           </h2>
         </SectionInView>
@@ -144,17 +144,24 @@ const Home = () => {
         </SectionInView>
         <SectionInView>
           <div className="flex gap-4">
-            <button className="bg-[#0078BE] text-white px-6 py-3 rounded font-normal hover:bg-[#005f94] transition">
-              Peça um orçamento
-            </button>
-            <button className="bg-gray-700 text-white px-6 py-3 rounded font-normal hover:bg-gray-600 transition">
-              Catálogo de materiais
-            </button>
+            <a href="#contato">
+              <button className="bg-[#0078BE] text-white px-6 py-3 rounded font-normal hover:bg-[#005f94] transition">
+                Peça um orçamento
+              </button>
+            </a>
+            <a href="#materiais">
+              <button className="bg-gray-700 text-white px-6 py-3 rounded font-normal hover:bg-gray-600 transition">
+                Catálogo de materiais
+              </button>
+            </a>
           </div>
         </SectionInView>
         {/* Quadrante de serviços */}
         <SectionInView>
-          <div className="mt-10 w-full bg-transparent border-2 rounded-xl border-[#0078BE] p-3 flex flex-col lg:flex-row divide-y-2 lg:divide-y-0 lg:divide-x-2 divide-[#0078BE] overflow-hidden">
+          <div
+            id="servicos"
+            className="mt-10 w-full bg-transparent border-2 rounded-xl border-[#0078BE] p-3 flex flex-col lg:flex-row divide-y-2 lg:divide-y-0 lg:divide-x-2 divide-[#0078BE] overflow-hidden"
+          >
             <div className="py-5 px-6 text-white text-lg text-center flex-1">
               Impressão em 3D personalizada
             </div>
@@ -171,7 +178,10 @@ const Home = () => {
         </SectionInView>
         {/* Seção de Serviços */}
         <SectionInView>
-          <section className="w-screen relative left-1/2 right-1/2 ml-[-50vw] mr-[-50vw] mt-16 bg-gray-800 rounded-xl p-8 pl-12 pr-12 lg:pl-64 lg:pr-64">
+          <section
+            className="w-screen relative left-1/2 right-1/2 ml-[-50vw] mr-[-50vw] mt-16 bg-gray-800 rounded-xl p-8 pl-12 pr-12 lg:pl-64 lg:pr-64"
+            id="servicos-section"
+          >
             <h3 className="text-3xl font-medium text-white mb-8 text-center">
               Nossos Serviços
             </h3>
@@ -210,16 +220,21 @@ const Home = () => {
             </div>
             <SectionInView>
               <div className="flex justify-center mt-8">
-                <button className="bg-[#0078BE] text-white px-8 py-3 rounded-full font-normal hover:bg-[#005f94] transition">
-                  Peça um orçamento
-                </button>
+                <a href="#contato">
+                  <button className="bg-[#0078BE] text-white px-8 py-3 rounded-full font-normal hover:bg-[#005f94] transition">
+                    Peça um orçamento
+                  </button>
+                </a>
               </div>
             </SectionInView>
           </section>
         </SectionInView>
         {/* Seção de Materiais */}
         <SectionInView>
-          <section className="w-screen pb-20 relative left-1/2 right-1/2 ml-[-50vw] mr-[-50vw] bg-gray-900 p-8 pl-12 pr-12 lg:pl-64 lg:pr-64">
+          <section
+            id="materiais"
+            className="w-screen pb-20 relative left-1/2 right-1/2 ml-[-50vw] mr-[-50vw] bg-gray-900 p-8 pl-12 pr-12 lg:pl-64 lg:pr-64"
+          >
             <h3 className="text-3xl font-medium text-white mb-8 text-center">
               Materiais
             </h3>
@@ -287,9 +302,11 @@ const Home = () => {
                 impressora fechada para evitar deformações.
               </p>
               <div className="flex justify-center mt-8">
-                <button className="bg-[#0078BE] text-white px-8 py-3 rounded font-normal hover:bg-[#005f94] transition w-full">
-                  Peça um orçamento
-                </button>
+                <a href="#contato">
+                  <button className="bg-[#0078BE] text-white px-8 py-3 rounded font-normal hover:bg-[#005f94] transition w-full">
+                    Peça um orçamento
+                  </button>
+                </a>
               </div>
             </div>
           </div>
@@ -316,9 +333,11 @@ const Home = () => {
                 performance.
               </p>
               <div className="flex justify-center mt-8">
-                <button className="bg-[#0078BE] text-white px-8 py-3 rounded font-normal hover:bg-[#005f94] transition w-full">
-                  Peça um orçamento
-                </button>
+                <a href="#contato">
+                  <button className="bg-[#0078BE] text-white px-8 py-3 rounded font-normal hover:bg-[#005f94] transition w-full">
+                    Peça um orçamento
+                  </button>
+                </a>
               </div>
             </div>
           </div>
@@ -343,15 +362,17 @@ const Home = () => {
                 propriedades em diferentes condições de uso e temperatura.
               </p>
               <div className="flex justify-center mt-8">
-                <button className="bg-[#0078BE] text-white px-8 py-3 rounded font-normal hover:bg-[#005f94] transition w-full">
-                  Peça um orçamento
-                </button>
+                <a href="#contato">
+                  <button className="bg-[#0078BE] text-white px-8 py-3 rounded font-normal hover:bg-[#005f94] transition w-full">
+                    Peça um orçamento
+                  </button>
+                </a>
               </div>
             </div>
           </div>
         )}
         {/* Seção de Clientes */}
-        <section className="pb-16 relative">
+        <section id="sobre" className="pb-16 relative">
           <span className="absolute -top-9 left-4 px-4 py-1 rounded-t-md text-white font-medium text-lg shadow bg-[#0078BE] border-b-0 z-10">
             Clientes
           </span>
@@ -403,20 +424,51 @@ const Home = () => {
             ))}
           </div>
           <div className="flex justify-center mt-12">
-            <button className="bg-[#0078BE] text-white px-8 py-3 rounded-full font-normal hover:bg-[#005f94] transition">
-              Peça um orçamento
-            </button>
+            <a href="#contato">
+              <button className="bg-[#0078BE] text-white px-8 py-3 rounded-full font-normal hover:bg-[#005f94] transition">
+                Peça um orçamento
+              </button>
+            </a>
           </div>
         </section>
         {/* Seção de F.A.Q */}
         <SectionInView>
-          <section className="w-full md:px-12 mb-20">
-            <h3 className="text-3xl font-medium text-white mb-8 text-start">
-              F.A.Q
-            </h3>
-            <div className="flex flex-col md:flex-row md:space-x-12 items-stretch w-full">
+          <section id="contato" className="w-full mb-20">
+            <div className="flex flex-col md:flex-row w-full gap-12">
+              {/* Títulos lado a lado (apenas md+) */}
+              <div className="hidden md:flex w-full flex-row gap-12 mb-8">
+                <div className="w-1/2 flex items-center">
+                  <h3 className="text-3xl font-medium text-white text-start">
+                    Perguntas Frequentes
+                  </h3>
+                </div>
+                <div className="w-1/2 flex items-center justify-between">
+                  <h4 className="text-2xl font-bold text-white">
+                    Peça um Orçamento
+                  </h4>
+                  <a
+                    href="https://wa.me/19997404451" // Substitua pelo número real
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full font-medium shadow transition"
+                  >
+                    <img
+                      src={whatsappIcon}
+                      alt="WhatsApp"
+                      className="w-6 h-6"
+                    />
+                    Whatsapp
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col md:flex-row w-full gap-12">
               {/* FAQ */}
-              <div className="flex flex-col gap-6 w-full md:w-1/2">
+              <div className="w-full md:w-1/2 flex flex-col gap-6 mb-10">
+                {/* Título FAQ mobile */}
+                <h3 className="text-3xl font-medium text-white text-start mb-4 md:hidden">
+                  Perguntas frequentes
+                </h3>
                 {[
                   {
                     q: 'Quais arquivos posso enviar para orçamento?',
@@ -434,6 +486,10 @@ const Home = () => {
                     q: 'Vocês entregam para todo o Brasil?',
                     a: 'Sim, enviamos para todo o Brasil via transportadora ou Correios.',
                   },
+                  {
+                    q: 'Vocês oferecem serviço de modelagem 3D para quem não tem o arquivo pronto?',
+                    a: 'Sim! Desenvolvemos o modelo 3D do zero para você, conforme sua necessidade, e também realizamos a impressão.',
+                  },
                 ].map((item, idx) => (
                   <FaqItem
                     key={item.q}
@@ -445,186 +501,210 @@ const Home = () => {
               </div>
 
               {/* Formulário */}
-              <form className="bg-gray-800 rounded-lg p-8 shadow text-white flex flex-col gap-4 w-full md:w-1/2 justify-between mt-10 md:mt-0">
-                <div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="relative">
-                      <input
-                        id="nome"
-                        name="nome"
-                        type="text"
-                        className="w-full rounded px-3 py-2 bg-gray-900 border border-gray-700 focus:outline-none focus:border-[#0078BE] peer placeholder-transparent"
-                        placeholder="Nome"
-                        required
-                        value={form.nome}
-                        onChange={(e) =>
-                          setForm((f) => ({ ...f, nome: e.target.value }))
-                        }
-                      />
-                      <label
-                        htmlFor="nome"
-                        className="absolute left-3 top-2 text-sm text-gray-400 transition-all duration-200 pointer-events-none bg-transparent
-    peer-placeholder-shown:top-2 peer-placeholder-shown:text-gray-400
-    peer-focus:-top-4 peer-focus:text-xs peer-focus:text-[#0078BE]
-    peer-not-placeholder-shown:-top-4 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-[#0078BE]"
-                      >
-                        Nome
-                      </label>
-                    </div>
-                    <div className="relative">
-                      <input
-                        id="sobrenome"
-                        name="sobrenome"
-                        type="text"
-                        className="w-full rounded px-3 py-2 bg-gray-900 border border-gray-700 focus:outline-none focus:border-[#0078BE] peer placeholder-transparent"
-                        placeholder="Sobrenome"
-                        required
-                        value={form.sobrenome}
-                        onChange={(e) =>
-                          setForm((f) => ({ ...f, sobrenome: e.target.value }))
-                        }
-                      />
-                      <label
-                        htmlFor="sobrenome"
-                        className="absolute left-3 top-2 text-sm text-gray-400 transition-all duration-200 pointer-events-none bg-transparent
-    peer-placeholder-shown:top-2 peer-placeholder-shown:text-gray-400
-    peer-focus:-top-4 peer-focus:text-xs peer-focus:text-[#0078BE]
-    peer-not-placeholder-shown:-top-4 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-[#0078BE]"
-                      >
-                        Sobrenome
-                      </label>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                    <div className="relative">
-                      <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        className="w-full rounded px-3 py-2 bg-gray-900 border border-gray-700 focus:outline-none focus:border-[#0078BE] peer placeholder-transparent"
-                        placeholder="E-mail"
-                        required
-                        value={form.email}
-                        onChange={(e) =>
-                          setForm((f) => ({ ...f, email: e.target.value }))
-                        }
-                      />
-                      <label
-                        htmlFor="email"
-                        className="absolute left-3 top-2 text-sm text-gray-400 transition-all duration-200 pointer-events-none bg-transparent
-    peer-placeholder-shown:top-2 peer-placeholder-shown:text-gray-400
-    peer-focus:-top-4 peer-focus:text-xs peer-focus:text-[#0078BE]
-    peer-not-placeholder-shown:-top-4 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-[#0078BE]"
-                      >
-                        E-mail
-                      </label>
-                    </div>
-                    <div className="relative">
-                      <input
-                        id="telefone"
-                        name="telefone"
-                        type="tel"
-                        className="w-full rounded px-3 py-2 bg-gray-900 border border-gray-700 focus:outline-none focus:border-[#0078BE] peer placeholder-transparent"
-                        placeholder="Telefone"
-                        required
-                        value={form.telefone}
-                        onChange={(e) =>
-                          setForm((f) => ({ ...f, telefone: e.target.value }))
-                        }
-                      />
-                      <label
-                        htmlFor="telefone"
-                        className="absolute left-3 top-2 text-sm text-gray-400 transition-all duration-200 pointer-events-none bg-transparent
-    peer-placeholder-shown:top-2 peer-placeholder-shown:text-gray-400
-    peer-focus:-top-4 peer-focus:text-xs peer-focus:text-[#0078BE]
-    peer-not-placeholder-shown:-top-4 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-[#0078BE]"
-                      >
-                        Telefone
-                      </label>
-                    </div>
-                  </div>
-
-                  <div className="relative mt-4">
-                    <input
-                      id="empresa"
-                      name="empresa"
-                      type="text"
-                      className="w-full rounded px-3 py-2 bg-gray-900 border border-gray-700 focus:outline-none focus:border-[#0078BE] peer placeholder-transparent"
-                      placeholder="Empresa"
-                      required
-                      value={form.empresa}
-                      onChange={(e) =>
-                        setForm((f) => ({ ...f, empresa: e.target.value }))
-                      }
+              <div className="w-full md:w-1/2 flex flex-col h-full">
+                {/* Título e botão do form mobile */}
+                <div className="flex items-center justify-between mb-4 md:hidden">
+                  <h4 className="text-2xl font-bold text-white">
+                    Peça um orçamento via e-mail
+                  </h4>
+                  <a
+                    href="https://wa.me/19997404451" // Substitua pelo número real
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full font-medium shadow transition"
+                  >
+                    <img
+                      src={whatsappIcon}
+                      alt="WhatsApp"
+                      className="w-6 h-6"
                     />
-                    <label
-                      htmlFor="empresa"
-                      className="absolute left-3 top-2 text-sm text-gray-400 transition-all duration-200 pointer-events-none bg-transparent
-    peer-placeholder-shown:top-2 peer-placeholder-shown:text-gray-400
-    peer-focus:-top-4 peer-focus:text-xs peer-focus:text-[#0078BE]
-    peer-not-placeholder-shown:-top-4 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-[#0078BE]"
-                    >
-                      Empresa
-                    </label>
-                  </div>
-
-                  <div className="relative mt-4">
-                    <input
-                      id="descricao"
-                      name="descricao"
-                      type="text"
-                      className="w-full rounded px-3 py-2 bg-gray-900 border border-gray-700 focus:outline-none focus:border-[#0078BE] peer placeholder-transparent"
-                      placeholder="Descrição do Projeto"
-                      required
-                      value={form.descricao}
-                      onChange={(e) =>
-                        setForm((f) => ({ ...f, descricao: e.target.value }))
-                      }
-                    />
-                    <label
-                      htmlFor="descricao"
-                      className="absolute left-3 top-2 text-sm text-gray-400 transition-all duration-200 pointer-events-none bg-transparent
-    peer-placeholder-shown:top-2 peer-placeholder-shown:text-gray-400
-    peer-focus:-top-4 peer-focus:text-xs peer-focus:text-[#0078BE]
-    peer-not-placeholder-shown:-top-4 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-[#0078BE]"
-                    >
-                      Descrição do Projeto
-                    </label>
-                  </div>
-
-                  <div className="relative mt-4">
-                    <textarea
-                      id="mensagem"
-                      name="mensagem"
-                      rows={3}
-                      className="w-full rounded px-3 py-2 bg-gray-900 border border-gray-700 focus:outline-none focus:border-[#0078BE] resize-none peer placeholder-transparent"
-                      placeholder="Mensagem"
-                      required
-                      value={form.mensagem}
-                      onChange={(e) =>
-                        setForm((f) => ({ ...f, mensagem: e.target.value }))
-                      }
-                    />
-                    <label
-                      htmlFor="mensagem"
-                      className="absolute left-3 top-2 text-sm text-gray-400 transition-all duration-200 pointer-events-none bg-transparent
-    peer-placeholder-shown:top-2 peer-placeholder-shown:text-gray-400
-    peer-focus:-top-4 peer-focus:text-xs peer-focus:text-[#0078BE]
-    peer-not-placeholder-shown:-top-4 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-[#0078BE]"
-                    >
-                      Mensagem
-                    </label>
-                  </div>
+                    Whatsapp
+                  </a>
                 </div>
+                <form className="bg-gray-800 rounded-lg p-8 shadow text-white flex flex-col gap-4 w-full justify-between border-4 border-gray-900 mt-0 h-full">
+                  <div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="relative">
+                        <input
+                          id="nome"
+                          name="nome"
+                          type="text"
+                          className="w-full rounded px-3 py-2 border border-gray-900 focus:outline-none focus:border-[#005f94] peer placeholder-transparent bg-transparent"
+                          placeholder="Nome"
+                          required
+                          value={form.nome}
+                          onChange={(e) =>
+                            setForm((f) => ({ ...f, nome: e.target.value }))
+                          }
+                        />
+                        <label
+                          htmlFor="nome"
+                          className="absolute left-3 top-2 text-sm text-gray-400 transition-all duration-200 pointer-events-none bg-transparent
+    peer-placeholder-shown:top-[10px] peer-placeholder-shown:text-gray-400
+    peer-focus:-top-5 peer-focus:text-xs peer-focus:text-[#0078BE]
+    peer-[&:not(:placeholder-shown)]:-top-5 peer-[&:not(:placeholder-shown)]:text-xs peer-[&:not(:placeholder-shown)]:text-[#0078BE]"
+                        >
+                          Nome
+                        </label>
+                      </div>
+                      <div className="relative">
+                        <input
+                          id="sobrenome"
+                          name="sobrenome"
+                          type="text"
+                          className="w-full rounded px-3 py-2 border border-gray-900 focus:outline-none focus:border-[#005f94] peer placeholder-transparent bg-transparent"
+                          placeholder="Sobrenome"
+                          required
+                          value={form.sobrenome}
+                          onChange={(e) =>
+                            setForm((f) => ({
+                              ...f,
+                              sobrenome: e.target.value,
+                            }))
+                          }
+                        />
+                        <label
+                          htmlFor="sobrenome"
+                          className="absolute left-3 top-2 text-sm text-gray-400 transition-all duration-200 pointer-events-none bg-transparent
+    peer-placeholder-shown:top-[10px] peer-placeholder-shown:text-gray-400
+    peer-focus:-top-5 peer-focus:text-xs peer-focus:text-[#0078BE]
+    peer-[&:not(:placeholder-shown)]:-top-5 peer-[&:not(:placeholder-shown)]:text-xs peer-[&:not(:placeholder-shown)]:text-[#0078BE]"
+                        >
+                          Sobrenome
+                        </label>
+                      </div>
+                    </div>
 
-                <button
-                  type="submit"
-                  className="bg-[#0078BE] text-white px-8 py-3 rounded-full font-normal hover:bg-[#005f94] transition mt-2"
-                >
-                  Enviar e-mail
-                </button>
-              </form>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                      <div className="relative">
+                        <input
+                          id="email"
+                          name="email"
+                          type="email"
+                          className="w-full rounded px-3 py-2 border border-gray-900 focus:outline-none focus:border-[#005f94] peer placeholder-transparent bg-transparent"
+                          placeholder="E-mail"
+                          required
+                          value={form.email}
+                          onChange={(e) =>
+                            setForm((f) => ({ ...f, email: e.target.value }))
+                          }
+                        />
+                        <label
+                          htmlFor="email"
+                          className="absolute left-3 top-2 text-sm text-gray-400 transition-all duration-200 pointer-events-none bg-transparent
+    peer-placeholder-shown:top-[10px] peer-placeholder-shown:text-gray-400
+    peer-focus:-top-5 peer-focus:text-xs peer-focus:text-[#0078BE]
+    peer-[&:not(:placeholder-shown)]:-top-5 peer-[&:not(:placeholder-shown)]:text-xs peer-[&:not(:placeholder-shown)]:text-[#0078BE]"
+                        >
+                          E-mail
+                        </label>
+                      </div>
+                      <div className="relative">
+                        <input
+                          id="telefone"
+                          name="telefone"
+                          type="tel"
+                          className="w-full rounded px-3 py-2 border border-gray-900 focus:outline-none focus:border-[#005f94] peer placeholder-transparent bg-transparent"
+                          placeholder="Telefone"
+                          required
+                          value={form.telefone}
+                          onChange={(e) =>
+                            setForm((f) => ({ ...f, telefone: e.target.value }))
+                          }
+                        />
+                        <label
+                          htmlFor="telefone"
+                          className="absolute left-3 top-2 text-sm text-gray-400 transition-all duration-200 pointer-events-none bg-transparent
+    peer-placeholder-shown:top-[10px] peer-placeholder-shown:text-gray-400
+    peer-focus:-top-5 peer-focus:text-xs peer-focus:text-[#0078BE]
+    peer-[&:not(:placeholder-shown)]:-top-5 peer-[&:not(:placeholder-shown)]:text-xs peer-[&:not(:placeholder-shown)]:text-[#0078BE]"
+                        >
+                          Telefone
+                        </label>
+                      </div>
+                    </div>
+
+                    <div className="relative mt-6">
+                      <input
+                        id="empresa"
+                        name="empresa"
+                        type="text"
+                        className="w-full rounded px-3 py-2 border border-gray-900 focus:outline-none focus:border-[#005f94] peer placeholder-transparent bg-transparent"
+                        placeholder="Empresa"
+                        required
+                        value={form.empresa}
+                        onChange={(e) =>
+                          setForm((f) => ({ ...f, empresa: e.target.value }))
+                        }
+                      />
+                      <label
+                        htmlFor="empresa"
+                        className="absolute left-3 top-2 text-sm text-gray-400 transition-all duration-200 pointer-events-none bg-transparent
+    peer-placeholder-shown:top-[10px] peer-placeholder-shown:text-gray-400
+    peer-focus:-top-5 peer-focus:text-xs peer-focus:text-[#0078BE]
+    peer-[&:not(:placeholder-shown)]:-top-5 peer-[&:not(:placeholder-shown)]:text-xs peer-[&:not(:placeholder-shown)]:text-[#0078BE]"
+                      >
+                        Empresa
+                      </label>
+                    </div>
+
+                    <div className="relative mt-6">
+                      <input
+                        id="descricao"
+                        name="descricao"
+                        type="text"
+                        className="w-full rounded px-3 py-2 border border-gray-900 focus:outline-none focus:border-[#005f94] peer placeholder-transparent bg-transparent"
+                        placeholder="Descrição do Projeto"
+                        required
+                        value={form.descricao}
+                        onChange={(e) =>
+                          setForm((f) => ({ ...f, descricao: e.target.value }))
+                        }
+                      />
+                      <label
+                        htmlFor="descricao"
+                        className="absolute left-3 top-2 text-sm text-gray-400 transition-all duration-200 pointer-events-none bg-transparent
+    peer-placeholder-shown:top-[10px] peer-placeholder-shown:text-gray-400
+    peer-focus:-top-5 peer-focus:text-xs peer-focus:text-[#0078BE]
+    peer-[&:not(:placeholder-shown)]:-top-5 peer-[&:not(:placeholder-shown)]:text-xs peer-[&:not(:placeholder-shown)]:text-[#0078BE]"
+                      >
+                        Descrição do Projeto
+                      </label>
+                    </div>
+
+                    <div className="relative mt-6">
+                      <textarea
+                        id="mensagem"
+                        name="mensagem"
+                        rows={3}
+                        className="w-full rounded px-3 py-2 border border-gray-900 focus:outline-none focus:border-[#005f94] resize-none peer placeholder-transparent bg-transparent"
+                        placeholder="Mensagem"
+                        required
+                        value={form.mensagem}
+                        onChange={(e) =>
+                          setForm((f) => ({ ...f, mensagem: e.target.value }))
+                        }
+                      />
+                      <label
+                        htmlFor="mensagem"
+                        className="absolute left-3 top-2 text-sm text-gray-400 transition-all duration-200 pointer-events-none bg-transparent
+    peer-placeholder-shown:top-[10px] peer-placeholder-shown:text-gray-400
+    peer-focus:-top-5 peer-focus:text-xs peer-focus:text-[#0078BE]
+    peer-[&:not(:placeholder-shown)]:-top-5 peer-[&:not(:placeholder-shown)]:text-xs peer-[&:not(:placeholder-shown)]:text-[#0078BE]"
+                      >
+                        Mensagem
+                      </label>
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="bg-[#0078BE] text-white px-8 py-3 rounded-full font-normal hover:bg-[#005f94] transition mt-2"
+                  >
+                    Enviar e-mail
+                  </button>
+                </form>
+              </div>
             </div>
           </section>
         </SectionInView>
