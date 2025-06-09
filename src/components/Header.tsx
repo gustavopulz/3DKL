@@ -8,7 +8,7 @@ const Header = () => {
         {/* Logo */}
         <div className="flex-shrink-0">
           <a href="/">
-            <img src="/logo2.png" alt="Logo 3DKL" className="h-14 w-auto" />
+            <img src="/logo-nova.png" alt="Logo 3DKL" className="h-14 w-auto" />
           </a>
         </div>
         {/* Hamburger Icon */}

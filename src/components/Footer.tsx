@@ -4,7 +4,11 @@ const Footer = () => (
   <footer className="bg-gray-800 text-white pt-12 pb-6 px-4 md:px-0 overflow-x-hidden">
     <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 text-sm items-start">
       <div className="flex flex-col items-center gap-2">
-        <img src="/logo.png" alt="Logo 3DKL" className="h-50 w-auto mb-2" />
+        <img
+          src="/logo-nova.png"
+          alt="Logo 3DKL"
+          className="h-20 w-auto mb-2"
+        />
       </div>
       <div className="flex flex-col items-start md:items-center">
         <h5 className="font-bold mb-2 text-[#0078BE] text-base md:text-lg w-full text-left md:text-center">
