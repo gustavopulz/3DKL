@@ -39,10 +39,10 @@ function ClienteDepoimento({
   return (
     <div
       ref={depRef}
-      className={`bg-gray-800 rounded-xl p-6 shadow text-white flex flex-col items-start transition-all duration-700 ease-out ${depVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+      className={`bg-[#808080]/40 rounded-xl p-6 shadow text-white flex flex-col items-start transition-all duration-700 ease-out ${depVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
     >
       <p className="italic mb-4 text-start">{text}</p>
-      <span className="font-bold text-[#0078BE]">{name}</span>
+      <span className="font-medium text-black/50">{name}</span>
       <span className="text-xs text-gray-300">{role}</span>
     </div>
   );
@@ -82,7 +82,7 @@ function FaqItem({
     >
       <div className="flex items-center justify-between w-full">
         <div className="flex items-center gap-3">
-          <span className="text-2xl font-bold text-[#0078BE]">{number}</span>
+          <span className="text-2xl font-medium text-[#0078BE]">{number}</span>
           <h4 className="text-lg font-medium">{question}</h4>
         </div>
         <span className="transition-transform duration-300 text-2xl text-[#0078BE]">
@@ -102,7 +102,7 @@ function FaqItem({
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 function VantagensCarousel() {
   const imagens = [
-    '/vantagens/img1.jpg',
+    // '/vantagens/img1.jpg',
     '/vantagens/img2.png',
     '/vantagens/img3.jpg',
     '/vantagens/img4.jpg',
@@ -186,7 +186,7 @@ function VantagensCarousel() {
                 )}
               <div
                 className={
-                  'transition-all duration-300 rounded-lg shadow-md bg-cover bg-center flex-shrink-0 border-2 border-gray-700 opacity-80 cursor-pointer'
+                  'transition-all duration-300 rounded-lg shadow-md bg-cover bg-center flex-shrink-0 border-2 border-[#808080] opacity-80 cursor-pointer'
                 }
                 style={{
                   backgroundImage: `url(${imagens[imgIdx]})`,
@@ -216,6 +216,7 @@ const Home = () => {
     empresa: '',
     descricao: '',
     mensagem: '',
+    temProjeto: false, // Adicionado para suportar o checkbox
   });
   const [file, setFile] = React.useState<File | null>(null);
   const navigate = useNavigate();
@@ -273,7 +274,7 @@ const Home = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 flex items-center overflow-x-hidden">
+    <div className="min-h-screen bg-black/70 flex items-center overflow-x-hidden">
       <div className="w-full">
         {/* Primeira dobra com vídeo de fundo */}
         <div className="relative w-full min-h-[700px] flex flex-col justify-start items-start mb-12">
@@ -307,12 +308,12 @@ const Home = () => {
             <SectionInView>
               <div className="flex gap-4">
                 <a href="#contato">
-                  <button className="bg-[#0078BE] text-white px-6 py-3 rounded font-normal hover:bg-[#005f94] transition">
+                  <button className="bg-orange-500 text-white px-6 py-3 rounded font-normal hover:bg-orange-600 transition">
                     Peça um orçamento
                   </button>
                 </a>
                 <a href="#materiais">
-                  <button className="bg-gray-700 text-white px-6 py-3 rounded font-normal hover:bg-gray-600 transition">
+                  <button className="bg-[#808080]/50 text-white px-6 py-3 rounded font-normal hover:bg-[#808080] transition">
                     Catálogo de materiais
                   </button>
                 </a>
@@ -322,7 +323,7 @@ const Home = () => {
             <SectionInView>
               <div
                 id="servicos"
-                className="mt-10 w-full bg-transparent border-2 rounded-xl border-[#0078BE] p-3 flex flex-col lg:flex-row divide-y-2 lg:divide-y-0 lg:divide-x-2 divide-[#0078BE] overflow-hidden"
+                className="mt-10 w-full bg-transparent border-2 rounded-xl border-orange-500 p-3 flex flex-col lg:flex-row divide-y-2 lg:divide-y-0 lg:divide-x-2 divide-orange-500 overflow-hidden"
               >
                 <div className="py-5 px-6 text-white text-lg text-center flex-1">
                   Impressão em 3D personalizada
@@ -372,6 +373,18 @@ const Home = () => {
                   img: '/acabamento.png',
                   alt: 'Acabamento especializado',
                 },
+                {
+                  title: 'Impressão de Resina',
+                  desc: 'Impressão 3D de alta resolução com resinas para peças detalhadas, prototipagem visual, joalheria, odontologia e aplicações técnicas. Acabamento superior e precisão para projetos exigentes.',
+                  img: '/resinaa.png',
+                  alt: 'Impressão de Resina',
+                },
+                {
+                  title: 'Manutenção de impressoras 3D',
+                  desc: 'Realizamos manutenção preventiva e corretiva em impressoras 3D FDM e SLA. Diagnóstico, troca de peças, calibração e otimização para garantir o melhor desempenho do seu equipamento. Conte com nossa experiência para manter sua impressora sempre pronta para produzir.',
+                  img: '/wrench.png',
+                  alt: 'Manutenção de impressoras 3D',
+                },
               ].map((serv) => (
                 <SectionInView key={serv.title}>
                   <div
@@ -383,7 +396,7 @@ const Home = () => {
                   >
                     <div className="flex items-center gap-3 mb-2">
                       <img src={serv.img} alt={serv.alt} className="w-8 h-8" />
-                      <h4 className="text-xl font-bold">{serv.title}</h4>
+                      <h4 className="text-xl font-medium">{serv.title}</h4>
                     </div>
                     <p>{serv.desc}</p>
                   </div>
@@ -393,7 +406,7 @@ const Home = () => {
             <SectionInView>
               <div className="flex justify-center mt-8">
                 <a href="#contato">
-                  <button className="bg-[#0078BE] text-white px-8 py-3 rounded-full font-normal hover:bg-[#005f94] transition">
+                  <button className="bg-orange-500 text-white px-8 py-3 rounded-full font-normal hover:bg-orange-600 transition">
                     Peça um orçamento
                   </button>
                 </a>
@@ -404,7 +417,7 @@ const Home = () => {
           <SectionInView>
             <section
               id="materiais"
-              className="w-screen mt-8 mb-8 pb-20 relative left-1/2 right-1/2 ml-[-50vw] mr-[-50vw] bg-gray-900 p-8 pl-12 pr-12 lg:pl-64 lg:pr-64"
+              className="w-screen mb-0 pb-20 relative left-1/2 right-1/2 ml-[-50vw] mr-[-50vw] p-8 pl-12 pr-12 lg:pl-64 lg:pr-64"
             >
               <h3 className="text-3xl font-medium text-white mb-8 text-center">
                 Materiais
@@ -437,8 +450,8 @@ const Home = () => {
                   },
                 ].map((mat) => (
                   <SectionInView key={mat.title}>
-                    <div className="bg-gray-800 rounded-lg p-6 shadow text-white flex flex-col items-center relative">
-                      <h4 className="text-xl font-bold mb-5 text-[#0078BE]">
+                    <div className="bg-black/50 rounded-lg p-6 shadow text-white flex flex-col items-center relative">
+                      <h4 className="text-xl font-medium mb-5 text-[#808080]">
                         {mat.title}
                       </h4>
                       <img
@@ -449,7 +462,7 @@ const Home = () => {
                       <div className="w-full flex justify-center">
                         <button
                           onClick={mat.onClick}
-                          className="border border-[#0078BE] text-[#0078BE] px-6 py-2 rounded font-normal hover:bg-[#0078BE] hover:text-white transition"
+                          className="border border-[#808080] text-[#808080] px-6 py-2 rounded font-normal hover:bg-[#808080] hover:text-white transition"
                         >
                           Saiba mais
                         </button>
@@ -470,7 +483,7 @@ const Home = () => {
                 >
                   &times;
                 </button>
-                <h4 className="text-2xl font-bold mb-4 text-[#0078BE]">
+                <h4 className="text-2xl font-medium mb-4 text-[#0078BE]">
                   Materiais de Plástico
                 </h4>
                 <p>
@@ -500,7 +513,7 @@ const Home = () => {
                 >
                   &times;
                 </button>
-                <h4 className="text-2xl font-bold mb-4 text-[#0078BE]">
+                <h4 className="text-2xl font-medium mb-4 text-[#0078BE]">
                   Materiais de Engenharia
                 </h4>
                 <p>
@@ -531,7 +544,7 @@ const Home = () => {
                 >
                   &times;
                 </button>
-                <h4 className="text-2xl font-bold mb-4 text-[#0078BE]">
+                <h4 className="text-2xl font-medium mb-4 text-[#0078BE]">
                   Materiais Flexíveis
                 </h4>
                 <p>
@@ -561,7 +574,7 @@ const Home = () => {
                 >
                   &times;
                 </button>
-                <h4 className="text-2xl font-bold mb-4 text-[#0078BE]">
+                <h4 className="text-2xl font-medium mb-4 text-[#0078BE]">
                   Materiais de Resina
                 </h4>
                 <p>
@@ -587,28 +600,30 @@ const Home = () => {
           {/* NOVA SEÇÃO: Vantagens em escolher a 3DKL Impressões 3D */}
           <SectionInView>
             <section
-              className="w-screen mb-20 pb-10 relative overflow-hidden left-1/2 right-1/2 ml-[-50vw] mr-[-50vw]"
+              className="w-screen z-0 pb-10 relative overflow-hidden left-1/2 right-1/2 ml-[-50vw] mr-[-50vw]"
               style={{
                 backgroundImage: 'url(/vantagens_fundo.avif)',
-                backgroundSize: 'cover',
+                backgroundSize: 'contain',
                 backgroundPosition: 'center',
               }}
             >
-              <div className="absolute inset-0 bg-black/50 z-0 pointer-events-none" />
+              <div className="absolute inset-0 bg-black/40 z-0 pointer-events-none" />
               <div className="relative z-10 p-8 pl-12 pr-12 lg:pl-64 lg:pr-64">
                 <h3 className="text-3xl font-medium text-white mb-8 text-start flex items-center justify-center gap-4">
-                  Vantagens em escolher a 3DKL Impressões 3D
+                  Vantagens em escolher nossos serviços
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                   {/* Card 1 */}
-                  <div className="bg-gray-800/40 border-2 border-gray-800 rounded-lg p-6 shadow text-white flex flex-col items-start h-full">
+                  <div className="bg-[#808080]/40 border-2 border-[#808080] rounded-lg p-6 shadow text-white flex flex-col items-start h-full">
                     <div className="flex items-start gap-2 mb-3">
                       <img
                         src="/vantagem1.png"
                         alt="Tecnologia de ponta"
                         className="w-8 h-8"
                       />
-                      <h4 className="text-lg font-bold">Tecnologia de ponta</h4>
+                      <h4 className="text-lg font-medium">
+                        Tecnologia de ponta
+                      </h4>
                     </div>
                     <p className="text-start text-gray-200">
                       Contamos com equipamentos de última geração para garantir
@@ -616,14 +631,16 @@ const Home = () => {
                     </p>
                   </div>
                   {/* Card 2 */}
-                  <div className="bg-gray-800/40 border-2 border-gray-800 rounded-lg p-6 shadow text-white flex flex-col items-start h-full">
+                  <div className="bg-[#808080]/40 border-2 border-[#808080] rounded-lg p-6 shadow text-white flex flex-col items-start h-full">
                     <div className="flex items-start gap-2 mb-3">
                       <img
                         src="/vantagem2.png"
                         alt="Projetos exclusivos"
                         className="w-8 h-8"
                       />
-                      <h4 className="text-lg font-bold">Projetos exclusivos</h4>
+                      <h4 className="text-lg font-medium">
+                        Projetos exclusivos
+                      </h4>
                     </div>
                     <p className="text-start text-gray-200">
                       Desenvolvemos soluções sob medida, atendendo às
@@ -631,14 +648,14 @@ const Home = () => {
                     </p>
                   </div>
                   {/* Card 3 */}
-                  <div className="bg-gray-800/40 border-2 border-gray-800 rounded-lg p-6 shadow text-white flex flex-col items-start h-full">
+                  <div className="bg-[#808080]/40 border-2 border-[#808080] rounded-lg p-6 shadow text-white flex flex-col items-start h-full">
                     <div className="flex items-start gap-2 mb-3">
                       <img
                         src="/vantagem3.png"
                         alt="Materiais premium"
                         className="w-8 h-8"
                       />
-                      <h4 className="text-lg font-bold">Materiais premium</h4>
+                      <h4 className="text-lg font-medium">Materiais premium</h4>
                     </div>
                     <p className="text-start text-gray-200">
                       Utilizamos apenas materiais de alta qualidade, assegurando
@@ -646,14 +663,14 @@ const Home = () => {
                     </p>
                   </div>
                   {/* Card 4 */}
-                  <div className="bg-gray-800/40 border-2 border-gray-800 rounded-lg p-6 shadow text-white flex flex-col items-start h-full">
+                  <div className="bg-[#808080]/40 border-2 border-[#808080] rounded-lg p-6 shadow text-white flex flex-col items-start h-full">
                     <div className="flex items-start gap-2 mb-3">
                       <img
                         src="/vantagem4.png"
                         alt="Consultoria especializada"
                         className="w-8 h-8"
                       />
-                      <h4 className="text-lg font-bold">
+                      <h4 className="text-lg font-medium">
                         Consultoria especializada
                       </h4>
                     </div>
@@ -673,7 +690,10 @@ const Home = () => {
           </SectionInView>
 
           {/* Seção de Clientes */}
-          <section id="sobre" className="pb-16 relative">
+          <section
+            id="sobre"
+            className="bg-black/40 z-0 w-screen -mt-12 mb-0 pb-20 relative left-1/2 right-1/2 ml-[-50vw] mr-[-50vw] pl-12 pr-12 lg:pl-64 lg:pr-64"
+          >
             <SectionInView>
               <h3 className="text-3xl font-medium text-white mb-4 mt-12 text-center">
                 Depoimentos
@@ -754,7 +774,7 @@ const Home = () => {
           </section>
           {/* Seção de F.A.Q */}
           <SectionInView>
-            <section id="contato" className="w-full mb-20">
+            <section id="contato" className="w-full mb-20 pt-10">
               <div className="flex flex-col md:flex-row w-full gap-12">
                 {/* Títulos lado a lado (apenas md+) */}
                 <div className="hidden md:flex w-full flex-row gap-12 mb-8">
@@ -764,7 +784,7 @@ const Home = () => {
                     </h3>
                   </div>
                   <div className="w-1/2 flex items-center justify-between">
-                    <h4 className="text-2xl font-bold text-white">
+                    <h4 className="text-2xl font-medium text-white">
                       Peça um Orçamento
                     </h4>
                     <a
@@ -825,7 +845,7 @@ const Home = () => {
                 <div className="w-full md:w-1/2 flex flex-col h-full">
                   {/* Título e botão do form mobile */}
                   <div className="flex items-center justify-between mb-4 md:hidden">
-                    <h4 className="text-2xl font-bold text-white">
+                    <h4 className="text-2xl font-medium text-white">
                       Peça um orçamento
                     </h4>
                   </div>
@@ -843,7 +863,7 @@ const Home = () => {
                     Whatsapp
                   </a>
                   <form
-                    className="bg-gray-800 rounded-lg p-8 shadow text-white flex flex-col gap-4 w-full justify-between border-4 border-gray-900 mt-0 h-full"
+                    className="bg-gray-800 rounded-lg p-8 shadow text-white flex flex-col gap-4 w-full justify-between border-0 border-gray-900 mt-0 h-full"
                     onSubmit={handleSubmit}
                   >
                     <div>
@@ -1091,46 +1111,72 @@ peer-[&:not(:placeholder-shown)]:-top-5 peer-[&:not(:placeholder-shown)]:text-xs
                           </span>
                         )}
                       </div>
-                      <div className="relative mt-6">
-                        <label
-                          htmlFor="anexo"
-                          className="block mb-1 -mt-3 text-sm text-gray-400 flex items-center gap-1"
-                        >
-                          Anexar arquivo <span className="text-red-500">*</span>
-                        </label>
+                      {/* Checkbox para anexar arquivo */}
+                      <div className="flex items-center mt-4">
                         <input
-                          id="anexo"
-                          name="anexo"
-                          type="file"
-                          accept=".stl,.obj,.step,.jpg,.jpeg,.png,.gif,.bmp,.svg,.pdf"
-                          className={`w-full rounded px-3 py-2 border ${errors.anexo ? 'border-red-500' : 'border-gray-900'} focus:outline-none focus:border-[#005f94] bg-transparent text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#0078BE] file:text-white hover:file:bg-[#005f94]`}
-                          onChange={(e) => {
-                            setFile(
-                              e.target.files && e.target.files[0]
-                                ? e.target.files[0]
-                                : null
-                            );
-                            if (
-                              errors.anexo &&
-                              e.target.files &&
-                              e.target.files[0]
-                            ) {
-                              setErrors((errs: any) => ({
-                                ...errs,
-                                anexo: undefined,
-                              }));
-                            }
-                          }}
+                          id="temProjeto"
+                          name="temProjeto"
+                          type="checkbox"
+                          checked={form.temProjeto || false}
+                          onChange={(e) =>
+                            setForm((f) => ({
+                              ...f,
+                              temProjeto: e.target.checked,
+                            }))
+                          }
+                          className="mr-2 accent-[#0078BE]"
                         />
-                        {errors.anexo && (
-                          <span className="text-red-500 text-xs mt-1 block">
-                            {errors.anexo}
-                          </span>
-                        )}
-                        <span className="text-xs text-gray-400 block mt-1">
-                          Aceitamos apenas STL, OBJ, STEP ou imagens/desenhos.
-                        </span>
+                        <label
+                          htmlFor="temProjeto"
+                          className="text-sm text-gray-200 select-none cursor-pointer"
+                        >
+                          Já tem um projeto? Clique para anexar um arquivo.
+                        </label>
                       </div>
+                      {/* Input de anexo visível apenas se checkbox marcada */}
+                      {form.temProjeto && (
+                        <div className="relative mt-6">
+                          <label
+                            htmlFor="anexo"
+                            className="mb-1 -mt-3 text-sm text-gray-400 flex items-center gap-1"
+                          >
+                            Anexar arquivo{' '}
+                            <span className="text-red-500">*</span>
+                          </label>
+                          <input
+                            id="anexo"
+                            name="anexo"
+                            type="file"
+                            accept=".stl,.obj,.step,.jpg,.jpeg,.png,.gif,.bmp,.svg,.pdf"
+                            className={`w-full rounded px-3 py-2 border ${errors.anexo ? 'border-red-500' : 'border-gray-900'} focus:outline-none focus:border-[#005f94] bg-transparent text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#0078BE] file:text-white hover:file:bg-[#005f94]`}
+                            onChange={(e) => {
+                              setFile(
+                                e.target.files && e.target.files[0]
+                                  ? e.target.files[0]
+                                  : null
+                              );
+                              if (
+                                errors.anexo &&
+                                e.target.files &&
+                                e.target.files[0]
+                              ) {
+                                setErrors((errs: any) => ({
+                                  ...errs,
+                                  anexo: undefined,
+                                }));
+                              }
+                            }}
+                          />
+                          {errors.anexo && (
+                            <span className="text-red-500 text-xs mt-1 block">
+                              {errors.anexo}
+                            </span>
+                          )}
+                          <span className="text-xs text-gray-400 block mt-1">
+                            Aceitamos apenas STL, OBJ, STEP ou imagens/desenhos.
+                          </span>
+                        </div>
+                      )}
                     </div>
                     <button
                       type="submit"

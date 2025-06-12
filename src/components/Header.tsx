@@ -3,7 +3,7 @@ import { useState } from 'react';
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   return (
-    <header className="bg-[#0078BE] w-full">
+    <header className="bg-black w-full">
       <nav className="flex items-center justify-between pl-6 pr-6 lg:pl-64 lg:pr-64 py-4 relative">
         {/* Logo */}
         <div className="flex-shrink-0">
@@ -86,7 +86,7 @@ const Header = () => {
         </ul>
         {/* Botão desktop */}
         <a href="#contato" className="hidden lg:block">
-          <button className="bg-gray-900 text-white px-6 py-2 rounded-full font-normal shadow-md hover:scale-105 transition-transform duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50">
+          <button className="bg-white text-black px-6 py-2 rounded-full font-normal shadow-md hover:scale-105 transition-transform duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50">
             Peça um orçamento
           </button>
         </a>
