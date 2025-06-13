@@ -42,7 +42,7 @@ function ClienteDepoimento({
       className={`bg-[#808080]/40 rounded-xl p-6 shadow text-white flex flex-col items-start transition-all duration-700 ease-out ${depVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
     >
       <p className="italic mb-4 text-start">{text}</p>
-      <span className="font-medium text-black/50">{name}</span>
+      <span className="font-medium text-orange-500 ">{name}</span>
       <span className="text-xs text-gray-300">{role}</span>
     </div>
   );
@@ -77,15 +77,15 @@ function FaqItem({
   const [open, setOpen] = React.useState(false);
   return (
     <div
-      className={`bg-gray-800 rounded-lg p-6 shadow text-white w-full cursor-pointer transition-all duration-300 ${open ? 'mb-2' : ''}`}
+      className={`bg-black/50 rounded-lg p-6 shadow text-white w-full cursor-pointer transition-all duration-300 ${open ? 'mb-2' : ''}`}
       onClick={() => setOpen((v) => !v)}
     >
       <div className="flex items-center justify-between w-full">
         <div className="flex items-center gap-3">
-          <span className="text-2xl font-medium text-[#0078BE]">{number}</span>
+          <span className="text-2xl font-medium text-orange-500">{number}</span>
           <h4 className="text-lg font-medium">{question}</h4>
         </div>
-        <span className="transition-transform duration-300 text-2xl text-[#0078BE]">
+        <span className="transition-transform duration-300 text-2xl text-orange-500">
           {open ? <FiChevronUp /> : <FiChevronDown />}
         </span>
       </div>
@@ -161,7 +161,7 @@ function VantagensCarousel() {
                 (typeof window !== 'undefined' && window.innerWidth < 768)) &&
                 i === 0 && (
                   <button
-                    className="absolute left-[-32px] top-1/2 -translate-y-1/2 bg-black/60 rounded-full p-2 text-white hover:bg-black/80 transition z-10 md:opacity-100"
+                    className="absolute left-[-32px] md:left-[-48px] bg-black/60 rounded-full p-2 text-white hover:bg-black/80 transition z-10 top-1/2 -translate-y-1/2 md:opacity-100"
                     onClick={prev}
                     aria-label="Anterior"
                     type="button"
@@ -175,7 +175,7 @@ function VantagensCarousel() {
                 (typeof window !== 'undefined' && window.innerWidth < 768)) &&
                 i === visibleImages.length - 1 && (
                   <button
-                    className="absolute right-[-32px] top-1/2 -translate-y-1/2 bg-black/60 rounded-full p-2 text-white hover:bg-black/80 transition z-10 md:opacity-100"
+                    className="absolute right-[-32px] md:right-[-48px] bg-black/60 rounded-full p-2 text-white hover:bg-black/80 transition z-10 top-1/2 -translate-y-1/2 md:opacity-100"
                     onClick={next}
                     aria-label="Próximo"
                     type="button"
@@ -192,6 +192,7 @@ function VantagensCarousel() {
                   backgroundImage: `url(${imagens[imgIdx]})`,
                   width: '220px',
                   height: '250px',
+                  ...(window.innerWidth <= 640 ? { width: '250px' } : {}),
                 }}
                 title="Clique para expandir"
               />
@@ -200,6 +201,195 @@ function VantagensCarousel() {
         </div>
       </div>
     </>
+  );
+}
+
+// Carrossel de Depoimentos
+function DepoimentosCarousel() {
+  const depoimentos = [
+    {
+      text: '"Atendimento excelente, personalizado, muito além das expectativas, tire todas as suas dúvidas e ainda receba seu produto em tempo recorde."',
+      name: (
+        <>
+          Nandhe S.
+          <div className="flex items-start mt-1">
+            {Array(5)
+              .fill(0)
+              .map((_, i) => (
+                <span key={i} className="text-yellow-400 text-lg">
+                  ★
+                </span>
+              ))}
+          </div>
+        </>
+      ),
+      role: '',
+    },
+    {
+      text: '"Empresa foi bem profissional, pontual e atendeu aos meus anseios. Em tempo oportuno recomendarei aos meus amigos."',
+      name: (
+        <>
+          Jefferson FERREIRA DOS SANTOS
+          <div className="flex items-start mt-1">
+            {Array(5)
+              .fill(0)
+              .map((_, i) => (
+                <span key={i} className="text-yellow-400 text-lg">
+                  ★
+                </span>
+              ))}
+          </div>
+        </>
+      ),
+      role: '',
+    },
+    {
+      text: '"Excelente atendimento, muito prestativo. Verificou todas as possibilidades para atender meu pedido. E o resultado ficou perfeito!"',
+      name: (
+        <>
+          Barbara Arivaben Serpellone
+          <div className="flex items-start mt-1">
+            {Array(5)
+              .fill(0)
+              .map((_, i) => (
+                <span key={i} className="text-yellow-400 text-lg">
+                  ★
+                </span>
+              ))}
+          </div>
+        </>
+      ),
+      role: '',
+    },
+    {
+      text: '"Ótima experiência! Serviço rápido, eficiente e com excelente qualidade. Recomendo a todos."',
+      name: (
+        <>
+          Lucas Pereira
+          <div className="flex items-start mt-1">
+            {Array(5)
+              .fill(0)
+              .map((_, i) => (
+                <span key={i} className="text-yellow-400 text-lg">
+                  ★
+                </span>
+              ))}
+          </div>
+        </>
+      ),
+      role: '',
+    },
+    {
+      text: '"Fui muito bem atendido, tiraram todas as minhas dúvidas e entregaram antes do prazo. Voltarei a fazer negócio!"',
+      name: (
+        <>
+          Mariana Silva
+          <div className="flex items-start mt-1">
+            {Array(5)
+              .fill(0)
+              .map((_, i) => (
+                <span key={i} className="text-yellow-400 text-lg">
+                  ★
+                </span>
+              ))}
+          </div>
+        </>
+      ),
+      role: '',
+    },
+    {
+      text: '"Qualidade impecável e ótimo custo-benefício. Superou minhas expectativas!"',
+      name: (
+        <>
+          Rafael Costa
+          <div className="flex items-start mt-1">
+            {Array(5)
+              .fill(0)
+              .map((_, i) => (
+                <span key={i} className="text-yellow-400 text-lg">
+                  ★
+                </span>
+              ))}
+          </div>
+        </>
+      ),
+      role: '',
+    },
+  ];
+  // Novo: responsivo para quantidade de cards
+  const getGroupSize = () => {
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      return 1;
+    }
+    return 3;
+  };
+  const [groupSize, setGroupSize] = React.useState(getGroupSize());
+  React.useEffect(() => {
+    const handleResize = () => setGroupSize(getGroupSize());
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  const [index, setIndex] = React.useState(0);
+  const totalGroups = Math.ceil(depoimentos.length / groupSize);
+  const currentGroup = Math.floor(index / groupSize);
+  const prev = () =>
+    setIndex((i) => (i - groupSize + depoimentos.length) % depoimentos.length);
+  const next = () => setIndex((i) => (i + groupSize) % depoimentos.length);
+  const visible = depoimentos.slice(
+    currentGroup * groupSize,
+    currentGroup * groupSize + groupSize
+  );
+  // Se chegar ao final e faltar depoimentos, completa do início
+  while (visible.length < groupSize) {
+    visible.push(depoimentos[visible.length]);
+  }
+  return (
+    <div className="w-full flex flex-col items-center">
+      <div
+        className={`w-full flex items-center justify-center relative px-0 md:px-0 group`}
+      >
+        <button
+          className="absolute left-[-32px] md:left-[-48px] bg-black/60 rounded-full p-2 text-white hover:bg-black/80 transition z-10 top-1/2 -translate-y-1/2 md:opacity-0 md:group-hover:opacity-100 md:pointer-events-none md:group-hover:pointer-events-auto"
+          onClick={prev}
+          aria-label="Anterior"
+          type="button"
+        >
+          <FiChevronLeft size={28} />
+        </button>
+        <div
+          className={`flex-1 grid grid-cols-1 ${groupSize > 1 ? 'md:grid-cols-3' : ''} gap-8 px-0 md:px-0`}
+        >
+          {visible.map((dep, i) => (
+            <ClienteDepoimento
+              key={i + '-' + dep.text}
+              text={dep.text}
+              name={dep.name}
+              role={dep.role}
+            />
+          ))}
+        </div>
+        <button
+          className="absolute right-[-32px] md:right-[-48px] bg-black/60 rounded-full p-2 text-white hover:bg-black/80 transition z-10 top-1/2 -translate-y-1/2 md:opacity-0 md:group-hover:opacity-100 md:pointer-events-none md:group-hover:pointer-events-auto"
+          onClick={next}
+          aria-label="Próximo"
+          type="button"
+        >
+          <FiChevronRight size={28} />
+        </button>
+      </div>
+      <div className="flex gap-2 mt-4">
+        {Array(totalGroups)
+          .fill(0)
+          .map((_, i) => (
+            <button
+              key={i}
+              className={`w-3 h-3 rounded-full ${i === currentGroup ? 'bg-orange-500' : 'bg-gray-400'}`}
+              onClick={() => setIndex(i * groupSize)}
+              aria-label={`Ir para grupo ${i + 1}`}
+            />
+          ))}
+      </div>
+    </div>
   );
 }
 
@@ -246,7 +436,8 @@ const Home = () => {
       newErrors.descricao = 'O campo Descrição é obrigatório';
     if (!form.mensagem.trim())
       newErrors.mensagem = 'O campo Mensagem é obrigatório';
-    if (!file) newErrors.anexo = 'Anexe um arquivo';
+    // Só exige anexo se temProjeto estiver marcado
+    if (form.temProjeto && !file) newErrors.anexo = 'Anexe um arquivo';
     return newErrors;
   }
 
@@ -476,14 +667,14 @@ const Home = () => {
           </SectionInView>
           {modal === 'plastico' && (
             <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
-              <div className="bg-gray-900 rounded-lg p-8 max-w-md w-full text-white relative transition-transform duration-300 ease-out animate-modal-drop mx-4">
+              <div className="bg-black rounded-lg p-8 max-w-md w-full text-white relative transition-transform duration-300 ease-out animate-modal-drop mx-4">
                 <button
-                  className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-3xl w-10 h-10 flex items-center justify-center"
+                  className="absolute top-2 right-2 text-white hover:text-orange-500 text-3xl w-10 h-10 flex items-center justify-center"
                   onClick={() => setModal(null)}
                 >
                   &times;
                 </button>
-                <h4 className="text-2xl font-medium mb-4 text-[#0078BE]">
+                <h4 className="text-2xl font-medium mb-4 text-orange-500">
                   Materiais de Plástico
                 </h4>
                 <p>
@@ -494,9 +685,9 @@ const Home = () => {
                   térmica, sendo perfeito para peças funcionais e duráveis, mas
                   requer impressora fechada para evitar deformações.
                 </p>
-                <div className="flex justify-center mt-8">
+                <div className="flex justify-start mt-8">
                   <a href="#contato">
-                    <button className="bg-[#0078BE] text-white px-8 py-3 rounded font-normal hover:bg-[#005f94] transition w-full">
+                    <button className="bg-orange-500 text-white px-8 py-3 rounded font-normal hover:bg-orange-600 transition w-full">
                       Peça um orçamento
                     </button>
                   </a>
@@ -506,14 +697,14 @@ const Home = () => {
           )}
           {modal === 'engenharia' && (
             <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
-              <div className="bg-gray-900 rounded-lg p-8 max-w-md w-full text-white relative transition-transform duration-300 ease-out animate-modal-drop mx-4">
+              <div className="bg-black rounded-lg p-8 max-w-md w-full text-white relative transition-transform duration-300 ease-out animate-modal-drop mx-4">
                 <button
-                  className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-3xl w-10 h-10 flex items-center justify-center"
+                  className="absolute top-2 right-2 text-white hover:text-orange-500 text-3xl w-10 h-10 flex items-center justify-center"
                   onClick={() => setModal(null)}
                 >
                   &times;
                 </button>
-                <h4 className="text-2xl font-medium mb-4 text-[#0078BE]">
+                <h4 className="text-2xl font-medium mb-4 text-orange-500">
                   Materiais de Engenharia
                 </h4>
                 <p>
@@ -525,9 +716,9 @@ const Home = () => {
                   temperaturas e esforços mecânicos, perfeito para peças de alta
                   performance.
                 </p>
-                <div className="flex justify-center mt-8">
+                <div className="flex justify-start mt-8">
                   <a href="#contato">
-                    <button className="bg-[#0078BE] text-white px-8 py-3 rounded font-normal hover:bg-[#005f94] transition w-full">
+                    <button className="bg-orange-500 text-white px-8 py-3 rounded font-normal hover:bg-orange-600 transition w-full">
                       Peça um orçamento
                     </button>
                   </a>
@@ -537,14 +728,14 @@ const Home = () => {
           )}
           {modal === 'flexivel' && (
             <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
-              <div className="bg-gray-900 rounded-lg p-8 max-w-md w-full text-white relative transition-transform duration-300 ease-out animate-modal-drop mx-4">
+              <div className="bg-black rounded-lg p-8 max-w-md w-full text-white relative transition-transform duration-300 ease-out animate-modal-drop mx-4">
                 <button
-                  className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-3xl w-10 h-10 flex items-center justify-center"
+                  className="absolute top-2 right-2 text-white hover:text-orange-500 text-3xl w-10 h-10 flex items-center justify-center"
                   onClick={() => setModal(null)}
                 >
                   &times;
                 </button>
-                <h4 className="text-2xl font-medium mb-4 text-[#0078BE]">
+                <h4 className="text-2xl font-medium mb-4 text-orange-500">
                   Materiais Flexíveis
                 </h4>
                 <p>
@@ -555,9 +746,9 @@ const Home = () => {
                   manter suas propriedades em diferentes condições de uso e
                   temperatura.
                 </p>
-                <div className="flex justify-center mt-8">
+                <div className="flex justify-start mt-8">
                   <a href="#contato">
-                    <button className="bg-[#0078BE] text-white px-8 py-3 rounded font-normal hover:bg-[#005f94] transition w-full">
+                    <button className="bg-orange-500 text-white px-8 py-3 rounded font-normal hover:bg-orange-600 transition w-full">
                       Peça um orçamento
                     </button>
                   </a>
@@ -567,14 +758,14 @@ const Home = () => {
           )}
           {modal === 'resina' && (
             <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
-              <div className="bg-gray-900 rounded-lg p-8 max-w-md w-full text-white relative transition-transform duration-300 ease-out animate-modal-drop mx-4">
+              <div className="bg-black rounded-lg p-8 max-w-md w-full text-white relative transition-transform duration-300 ease-out animate-modal-drop mx-4">
                 <button
-                  className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-3xl w-10 h-10 flex items-center justify-center"
+                  className="absolute top-2 right-2 text-white hover:text-orange-500 text-3xl w-10 h-10 flex items-center justify-center"
                   onClick={() => setModal(null)}
                 >
                   &times;
                 </button>
-                <h4 className="text-2xl font-medium mb-4 text-[#0078BE]">
+                <h4 className="text-2xl font-medium mb-4 text-orange-500">
                   Materiais de Resina
                 </h4>
                 <p>
@@ -587,9 +778,9 @@ const Home = () => {
                   técnico, garantindo versatilidade e qualidade para o seu
                   projeto.
                 </p>
-                <div className="flex justify-center mt-8">
+                <div className="flex justify-start mt-8">
                   <a href="#contato">
-                    <button className="bg-[#0078BE] text-white px-8 py-3 rounded font-normal hover:bg-[#005f94] transition w-full">
+                    <button className="bg-orange-500 text-white px-8 py-3 rounded font-normal hover:bg-orange-600 transition w-full">
                       Peça um orçamento
                     </button>
                   </a>
@@ -605,6 +796,7 @@ const Home = () => {
                 backgroundImage: 'url(/vantagens_fundo.avif)',
                 backgroundSize: 'contain',
                 backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat', // impede repetição da imagem
               }}
             >
               <div className="absolute inset-0 bg-black/40 z-0 pointer-events-none" />
@@ -699,74 +891,12 @@ const Home = () => {
                 Depoimentos
               </h3>
             </SectionInView>
-            <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-              {/* Depoimento 1 */}
-              <ClienteDepoimento
-                text={
-                  '"Atendimento excelente, personalizado, muito além das expectativas, tire todas as suas dúvidas e ainda receba seu produto em tempo recorde."'
-                }
-                name={
-                  <>
-                    Nandhe S.
-                    <div className="flex items-start mt-1">
-                      {Array(5)
-                        .fill(0)
-                        .map((_, i) => (
-                          <span key={i} className="text-yellow-400 text-lg">
-                            ★
-                          </span>
-                        ))}
-                    </div>
-                  </>
-                }
-                role=""
-              />
-              {/* Depoimento 2 */}
-              <ClienteDepoimento
-                text={
-                  '"Empresa foi bem profissional, pontual e atendeu aos meus anseios. Em tempo oportuno recomendarei aos meus amigos."'
-                }
-                name={
-                  <>
-                    Jefferson FERREIRA DOS SANTOS
-                    <div className="flex items-start mt-1">
-                      {Array(5)
-                        .fill(0)
-                        .map((_, i) => (
-                          <span key={i} className="text-yellow-400 text-lg">
-                            ★
-                          </span>
-                        ))}
-                    </div>
-                  </>
-                }
-                role=""
-              />
-              {/* Depoimento 3 */}
-              <ClienteDepoimento
-                text={
-                  '"Excelente atendimento, muito prestativo. Verificou todas as possibilidades para atender meu pedido. E o resultado ficou perfeito!"'
-                }
-                name={
-                  <>
-                    Barbara Arivaben Serpellone
-                    <div className="flex items-start mt-1">
-                      {Array(5)
-                        .fill(0)
-                        .map((_, i) => (
-                          <span key={i} className="text-yellow-400 text-lg">
-                            ★
-                          </span>
-                        ))}
-                    </div>
-                  </>
-                }
-                role=""
-              />
+            <div className="mt-12 flex justify-center">
+              <DepoimentosCarousel />
             </div>
             <div className="flex justify-center mt-12">
               <a href="#contato">
-                <button className="bg-[#0078BE] text-white px-8 py-3 rounded-full font-normal hover:bg-[#005f94] transition">
+                <button className="bg-orange-500 text-white px-8 py-3 rounded-full font-normal hover:bg-orange-600 transition">
                   Peça um orçamento
                 </button>
               </a>
@@ -863,7 +993,7 @@ const Home = () => {
                     Whatsapp
                   </a>
                   <form
-                    className="bg-gray-800 rounded-lg p-8 shadow text-white flex flex-col gap-4 w-full justify-between border-0 border-gray-900 mt-0 h-full"
+                    className="bg-black/50 rounded-lg p-8 shadow text-white flex flex-col gap-4 w-full justify-between border-0 border-[#808080] mt-0 h-full"
                     onSubmit={handleSubmit}
                   >
                     <div>
@@ -873,7 +1003,7 @@ const Home = () => {
                             id="nome"
                             name="nome"
                             type="text"
-                            className={`w-full rounded px-3 py-2 border ${errors.nome ? 'border-red-500' : 'border-gray-900'} focus:outline-none focus:border-[#005f94] peer placeholder-transparent bg-transparent`}
+                            className={`w-full rounded px-3 py-2 border ${errors.nome ? 'border-red-500' : 'border-[#808080]'} focus:outline-none focus:border-orange-500 peer placeholder-transparent bg-transparent`}
                             placeholder="Nome"
                             value={form.nome}
                             onChange={(e) => {
@@ -888,9 +1018,9 @@ const Home = () => {
                           />
                           <label
                             htmlFor="nome"
-                            className="absolute left-3 top-2 text-sm text-gray-400 transition-all duration-200 pointer-events-none bg-transparent
-            peer-placeholder-shown:top-[10px] peer-placeholder-shown:text-gray-400
-            peer-focus:-top-5 peer-focus:text-xs peer-focus:text-[#0078BE]
+                            className="absolute left-3 top-2 text-sm text-[#808080] transition-all duration-200 pointer-events-none bg-transparent
+            peer-placeholder-shown:top-[10px] peer-placeholder-shown:text-[#808080]
+            peer-focus:-top-5 peer-focus:text-xs peer-focus:text-orange-500
             peer-[&:not(:placeholder-shown)]:-top-5 peer-[&:not(:placeholder-shown)]:text-xs flex items-center gap-1"
                           >
                             Nome <span className="text-red-500">*</span>
@@ -906,7 +1036,7 @@ const Home = () => {
                             id="sobrenome"
                             name="sobrenome"
                             type="text"
-                            className={`w-full rounded px-3 py-2 border ${errors.sobrenome ? 'border-red-500' : 'border-gray-900'} focus:outline-none focus:border-[#005f94] peer placeholder-transparent bg-transparent`}
+                            className={`w-full rounded px-3 py-2 border ${errors.nome ? 'border-red-500' : 'border-[#808080]'} focus:outline-none focus:border-orange-500 peer placeholder-transparent bg-transparent`}
                             placeholder="Sobrenome"
                             value={form.sobrenome}
                             onChange={(e) => {
@@ -924,9 +1054,9 @@ const Home = () => {
                           />
                           <label
                             htmlFor="sobrenome"
-                            className="absolute left-3 top-2 text-sm text-gray-400 transition-all duration-200 pointer-events-none bg-transparent
-            peer-placeholder-shown:top-[10px] peer-placeholder-shown:text-gray-400
-            peer-focus:-top-5 peer-focus:text-xs peer-focus:text-[#0078BE]
+                            className="absolute left-3 top-2 text-sm text-[#808080] transition-all duration-200 pointer-events-none bg-transparent
+            peer-placeholder-shown:top-[10px] peer-placeholder-shown:text-[#808080]
+            peer-focus:-top-5 peer-focus:text-xs peer-focus:text-orange-500
             peer-[&:not(:placeholder-shown)]:-top-5 peer-[&:not(:placeholder-shown)]:text-xs flex items-center gap-1"
                           >
                             Sobrenome <span className="text-red-500">*</span>
@@ -944,7 +1074,7 @@ const Home = () => {
                             id="email"
                             name="email"
                             type="email"
-                            className={`w-full rounded px-3 py-2 border ${errors.email ? 'border-red-500' : 'border-gray-900'} focus:outline-none focus:border-[#005f94] peer placeholder-transparent bg-transparent`}
+                            className={`w-full rounded px-3 py-2 border ${errors.email ? 'border-red-500' : 'border-[#808080]'} focus:outline-none focus:border-orange-500 peer placeholder-transparent bg-transparent`}
                             placeholder="E-mail"
                             value={form.email}
                             onChange={(e) => {
@@ -964,9 +1094,9 @@ const Home = () => {
                           />
                           <label
                             htmlFor="email"
-                            className="absolute left-3 top-2 text-sm text-gray-400 transition-all duration-200 pointer-events-none bg-transparent
-            peer-placeholder-shown:top-[10px] peer-placeholder-shown:text-gray-400
-            peer-focus:-top-5 peer-focus:text-xs peer-focus:text-[#0078BE]
+                            className="absolute left-3 top-2 text-sm text-[#808080] transition-all duration-200 pointer-events-none bg-transparent
+            peer-placeholder-shown:top-[10px] peer-placeholder-shown:text-[#808080]
+            peer-focus:-top-5 peer-focus:text-xs peer-focus:text-orange-500
             peer-[&:not(:placeholder-shown)]:-top-5 peer-[&:not(:placeholder-shown)]:text-xs flex items-center gap-1"
                           >
                             E-mail <span className="text-red-500">*</span>
@@ -982,7 +1112,7 @@ const Home = () => {
                             id="telefone"
                             name="telefone"
                             type="tel"
-                            className={`w-full rounded px-3 py-2 border ${errors.telefone ? 'border-red-500' : 'border-gray-900'} focus:outline-none focus:border-[#005f94] peer placeholder-transparent bg-transparent`}
+                            className={`w-full rounded px-3 py-2 border ${errors.telefone ? 'border-red-500' : 'border-[#808080]'} focus:outline-none focus:border-orange-500 peer placeholder-transparent bg-transparent`}
                             placeholder="Telefone"
                             value={form.telefone}
                             onChange={(e) => {
@@ -1000,9 +1130,9 @@ const Home = () => {
                           />
                           <label
                             htmlFor="telefone"
-                            className="absolute left-3 top-2 text-sm text-gray-400 transition-all duration-200 pointer-events-none bg-transparent
-            peer-placeholder-shown:top-[10px] peer-placeholder-shown:text-gray-400
-            peer-focus:-top-5 peer-focus:text-xs peer-focus:text-[#0078BE]
+                            className="absolute left-3 top-2 text-sm text-[#808080] transition-all duration-200 pointer-events-none bg-transparent
+            peer-placeholder-shown:top-[10px] peer-placeholder-shown:text-[#808080]
+            peer-focus:-top-5 peer-focus:text-xs peer-focus:text-orange-500
             peer-[&:not(:placeholder-shown)]:-top-5 peer-[&:not(:placeholder-shown)]:text-xs flex items-center gap-1"
                           >
                             Telefone <span className="text-red-500">*</span>
@@ -1020,7 +1150,7 @@ const Home = () => {
                           id="empresa"
                           name="empresa"
                           type="text"
-                          className="w-full rounded px-3 py-2 border border-gray-900 focus:outline-none focus:border-[#005f94] peer placeholder-transparent bg-transparent"
+                          className="w-full rounded px-3 py-2 border border-[#808080] focus:outline-none focus:border-orange-500 peer placeholder-transparent bg-transparent"
                           placeholder="Empresa"
                           value={form.empresa}
                           onChange={(e) =>
@@ -1029,9 +1159,9 @@ const Home = () => {
                         />
                         <label
                           htmlFor="empresa"
-                          className="absolute left-3 top-2 text-sm text-gray-400 transition-all duration-200 pointer-events-none bg-transparent
-peer-placeholder-shown:top-[10px] peer-placeholder-shown:text-gray-400
-peer-focus:-top-5 peer-focus:text-xs peer-focus:text-[#0078BE]
+                          className="absolute left-3 top-2 text-sm text-[#808080] transition-all duration-200 pointer-events-none bg-transparent
+peer-placeholder-shown:top-[10px] peer-placeholder-shown:text-[#808080]
+peer-focus:-top-5 peer-focus:text-xs peer-focus:text-orange-500
 peer-[&:not(:placeholder-shown)]:-top-5 peer-[&:not(:placeholder-shown)]:text-xs"
                         >
                           Empresa
@@ -1043,7 +1173,7 @@ peer-[&:not(:placeholder-shown)]:-top-5 peer-[&:not(:placeholder-shown)]:text-xs
                           id="descricao"
                           name="descricao"
                           type="text"
-                          className={`w-full rounded px-3 py-2 border ${errors.descricao ? 'border-red-500' : 'border-gray-900'} focus:outline-none focus:border-[#005f94] peer placeholder-transparent bg-transparent`}
+                          className={`w-full rounded px-3 py-2 border ${errors.descricao ? 'border-red-500' : 'border-[#808080]'} focus:outline-none focus:border-orange-500 peer placeholder-transparent bg-transparent`}
                           placeholder="Descrição do Projeto"
                           value={form.descricao}
                           onChange={(e) => {
@@ -1061,9 +1191,9 @@ peer-[&:not(:placeholder-shown)]:-top-5 peer-[&:not(:placeholder-shown)]:text-xs
                         />
                         <label
                           htmlFor="descricao"
-                          className="absolute left-3 top-2 text-sm text-gray-400 transition-all duration-200 pointer-events-none bg-transparent
-peer-placeholder-shown:top-[10px] peer-placeholder-shown:text-gray-400
-peer-focus:-top-5 peer-focus:text-xs peer-focus:text-[#0078BE]
+                          className="absolute left-3 top-2 text-sm text-[#808080] transition-all duration-200 pointer-events-none bg-transparent
+peer-placeholder-shown:top-[10px] peer-placeholder-shown:text-[#808080]
+peer-focus:-top-5 peer-focus:text-xs peer-focus:text-orange-500
 peer-[&:not(:placeholder-shown)]:-top-5 peer-[&:not(:placeholder-shown)]:text-xs flex items-center gap-1"
                         >
                           Descrição do Projeto{' '}
@@ -1080,7 +1210,7 @@ peer-[&:not(:placeholder-shown)]:-top-5 peer-[&:not(:placeholder-shown)]:text-xs
                           id="mensagem"
                           name="mensagem"
                           rows={3}
-                          className={`w-full rounded px-3 py-2 border ${errors.mensagem ? 'border-red-500' : 'border-gray-900'} focus:outline-none focus:border-[#005f94] resize-none peer placeholder-transparent bg-transparent`}
+                          className={`w-full rounded px-3 py-2 border ${errors.mensagem ? 'border-red-500' : 'border-[#808080]'} focus:outline-none focus:border-orange-500 resize-none peer placeholder-transparent bg-transparent`}
                           placeholder="Mensagem"
                           value={form.mensagem}
                           onChange={(e) => {
@@ -1098,9 +1228,9 @@ peer-[&:not(:placeholder-shown)]:-top-5 peer-[&:not(:placeholder-shown)]:text-xs
                         />
                         <label
                           htmlFor="mensagem"
-                          className="absolute left-3 top-2 text-sm text-gray-400 transition-all duration-200 pointer-events-none bg-transparent
-    peer-placeholder-shown:top-[10px] peer-placeholder-shown:text-gray-400
-    peer-focus:-top-5 peer-focus:text-xs peer-focus:text-[#0078BE]
+                          className="absolute left-3 top-2 text-sm text-[#808080] transition-all duration-200 pointer-events-none bg-transparent
+    peer-placeholder-shown:top-[10px] peer-placeholder-shown:text-[#808080]
+    peer-focus:-top-5 peer-focus:text-xs peer-focus:text-orange-500
     peer-[&:not(:placeholder-shown)]:-top-5 peer-[&:not(:placeholder-shown)]:text-xs flex items-center gap-1"
                         >
                           Mensagem <span className="text-red-500">*</span>
@@ -1138,7 +1268,7 @@ peer-[&:not(:placeholder-shown)]:-top-5 peer-[&:not(:placeholder-shown)]:text-xs
                         <div className="relative mt-6">
                           <label
                             htmlFor="anexo"
-                            className="mb-1 -mt-3 text-sm text-gray-400 flex items-center gap-1"
+                            className="mb-1 -mt-3 text-sm text-[#808080] flex items-center gap-1"
                           >
                             Anexar arquivo{' '}
                             <span className="text-red-500">*</span>
@@ -1148,7 +1278,7 @@ peer-[&:not(:placeholder-shown)]:-top-5 peer-[&:not(:placeholder-shown)]:text-xs
                             name="anexo"
                             type="file"
                             accept=".stl,.obj,.step,.jpg,.jpeg,.png,.gif,.bmp,.svg,.pdf"
-                            className={`w-full rounded px-3 py-2 border ${errors.anexo ? 'border-red-500' : 'border-gray-900'} focus:outline-none focus:border-[#005f94] bg-transparent text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#0078BE] file:text-white hover:file:bg-[#005f94]`}
+                            className={`w-full rounded px-3 py-2 border ${errors.anexo ? 'border-red-500' : 'border-[#808080]'} focus:outline-none focus:border-orange-500 bg-transparent text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-orange-500 file:text-white hover:file:bg-orange-600 cursor-pointer file:cursor-pointer`}
                             onChange={(e) => {
                               setFile(
                                 e.target.files && e.target.files[0]
@@ -1172,7 +1302,7 @@ peer-[&:not(:placeholder-shown)]:-top-5 peer-[&:not(:placeholder-shown)]:text-xs
                               {errors.anexo}
                             </span>
                           )}
-                          <span className="text-xs text-gray-400 block mt-1">
+                          <span className="text-xs text-[#808080] block mt-1">
                             Aceitamos apenas STL, OBJ, STEP ou imagens/desenhos.
                           </span>
                         </div>
@@ -1180,7 +1310,7 @@ peer-[&:not(:placeholder-shown)]:-top-5 peer-[&:not(:placeholder-shown)]:text-xs
                     </div>
                     <button
                       type="submit"
-                      className="bg-[#0078BE] text-white px-8 py-3 rounded-full font-normal hover:bg-[#005f94] transition mt-2"
+                      className="bg-orange-500 text-white px-8 py-3 rounded-full font-normal hover:bg-orange-600 transition mt-2"
                     >
                       Enviar e-mail
                     </button>

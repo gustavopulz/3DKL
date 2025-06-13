@@ -35,19 +35,19 @@ const Header = () => {
         </button>
         {/* Links */}
         <ul
-          className={`flex-1 flex-col lg:flex-row flex justify-center lg:justify-center gap-4 lg:gap-8 lg:flex lg:static absolute top-full left-0 w-full bg-[#0078BE] lg:bg-transparent z-20 transition-all duration-300 ${
+          className={`flex-1 flex-col lg:flex-row flex justify-center lg:justify-center gap-4 lg:gap-8 lg:flex lg:static absolute top-full left-0 w-full bg-black lg:bg-transparent z-20 transition-all duration-300 ${
             menuOpen ? 'flex' : 'hidden'
           } lg:flex pl-8 lg:pl-0 pb-8 lg:pb-0`}
         >
           <li>
-            <a href="/" className="text-white font-normal hover:text-gray-900">
+            <a href="/" className="text-white font-normal hover:text-gray-300">
               Início
             </a>
           </li>
           <li>
             <a
               href="#servicos"
-              className="text-white font-normal hover:text-gray-900"
+              className="text-white font-normal hover:text-gray-300"
             >
               Serviços
             </a>
@@ -55,7 +55,7 @@ const Header = () => {
           <li>
             <a
               href="#materiais"
-              className="text-white font-normal hover:text-gray-900"
+              className="text-white font-normal hover:text-gray-300"
             >
               Materiais
             </a>
@@ -63,7 +63,7 @@ const Header = () => {
           <li>
             <a
               href="#sobre"
-              className="text-white font-normal hover:text-gray-900"
+              className="text-white font-normal hover:text-gray-300"
             >
               Sobre Nós
             </a>
@@ -71,14 +71,14 @@ const Header = () => {
           <li>
             <a
               href="#contato"
-              className="text-white font-normal hover:text-gray-900"
+              className="text-white font-normal hover:text-gray-300"
             >
               Contato
             </a>
           </li>
           <li className="block lg:hidden mt-2 w-3/4 mx-auto">
             <a href="#contato">
-              <button className="bg-gray-900 text-white px-6 py-2 rounded-full font-normal shadow-md hover:scale-105 transition-transform duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 w-full">
+              <button className="bg-white text-black px-6 py-2 rounded-full font-normal shadow-md hover:scale-105 transition-transform duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 w-full">
                 Peça um orçamento
               </button>
             </a>
