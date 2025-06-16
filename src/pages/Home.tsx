@@ -1,5 +1,6 @@
 import React from 'react';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
+import { FiMail, FiMessageCircle } from 'react-icons/fi';
 import whatsappIcon from '/whatsapp.svg';
 import { useNavigate } from 'react-router-dom';
 
@@ -494,13 +495,13 @@ const Home = () => {
       if (form.empresa) msg += `Empresa: ${form.empresa}%0A`;
       msg += `Descrição do Projeto: ${form.descricao}%0A`;
       msg += `Mensagem: ${form.message}%0A`;
-      if (form.temProjeto)
-        msg += `Possui arquivo para anexo: Sim (enviar por e-mail)%0A`;
+      if (form.temProjeto) msg += `Possui arquivo para anexo: Sim%0A`;
       else msg += `Possui arquivo para anexo: Não%0A`;
       // Número do WhatsApp
       const phone = '1934496536';
       const url = `https://wa.me/${phone}?text=${msg}`;
       window.open(url, '_blank');
+      navigate('/ty-wp');
     }
   }
 
@@ -1346,17 +1347,19 @@ peer-[&:not(:placeholder-shown)]:-top-5 peer-[&:not(:placeholder-shown)]:text-xs
                     </div>
                     <button
                       type="submit"
-                      className="bg-orange-500 text-white px-8 py-3 rounded-full font-normal hover:bg-orange-600 transition mt-2"
+                      className="bg-orange-500 text-white px-8 py-3 rounded-full font-normal hover:bg-orange-600 transition mt-2 flex items-center justify-center gap-2"
                     >
-                      Enviar e-mail
+                      <FiMail className="w-5 h-5" />
+                      Enviar por E-mail
                     </button>
                     {/* Botão Enviar por WhatsApp */}
                     <button
                       type="button"
                       onClick={handleWhatsAppSubmit}
-                      className="bg-green-500 text-white px-8 py-3 rounded-full font-normal hover:bg-green-600 transition mt-2"
+                      className="bg-green-500 text-white px-8 py-3 rounded-full font-normal hover:bg-green-600 transition mt-2 flex items-center justify-center gap-2"
                     >
-                      Enviar por whatsapp
+                      <FiMessageCircle className="w-5 h-5" />
+                      Enviar por Whatsapp
                     </button>
                   </form>
                 </div>
