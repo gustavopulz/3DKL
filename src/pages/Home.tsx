@@ -468,6 +468,7 @@ const Home = () => {
             body: formData,
           }
         );
+
         if (response.ok) {
           navigate('/Ty-F');
         } else {
@@ -476,6 +477,30 @@ const Home = () => {
       } catch (err) {
         alert('Erro ao enviar o formulário. Tente novamente.');
       }
+    }
+  }
+
+  // Função para enviar por WhatsApp
+  function handleWhatsAppSubmit(e: React.MouseEvent) {
+    e.preventDefault();
+    const validation = validateForm();
+    setErrors(validation);
+    if (Object.keys(validation).length === 0) {
+      // Monta mensagem
+      let msg = `*Orçamento 3DKL*%0A`;
+      msg += `Nome: ${form.name} ${form.sobrenome}%0A`;
+      msg += `E-mail: ${form.email}%0A`;
+      msg += `Telefone: ${form.phone}%0A`;
+      if (form.empresa) msg += `Empresa: ${form.empresa}%0A`;
+      msg += `Descrição do Projeto: ${form.descricao}%0A`;
+      msg += `Mensagem: ${form.message}%0A`;
+      if (form.temProjeto)
+        msg += `Possui arquivo para anexo: Sim (enviar por e-mail)%0A`;
+      else msg += `Possui arquivo para anexo: Não%0A`;
+      // Número do WhatsApp
+      const phone = '19997404451';
+      const url = `https://wa.me/${phone}?text=${msg}`;
+      window.open(url, '_blank');
     }
   }
 
@@ -1324,6 +1349,14 @@ peer-[&:not(:placeholder-shown)]:-top-5 peer-[&:not(:placeholder-shown)]:text-xs
                       className="bg-orange-500 text-white px-8 py-3 rounded-full font-normal hover:bg-orange-600 transition mt-2"
                     >
                       Enviar e-mail
+                    </button>
+                    {/* Botão Enviar por WhatsApp */}
+                    <button
+                      type="button"
+                      onClick={handleWhatsAppSubmit}
+                      className="bg-green-500 text-white px-8 py-3 rounded-full font-normal hover:bg-green-600 transition mt-2"
+                    >
+                      Enviar por whatsapp
                     </button>
                   </form>
                 </div>

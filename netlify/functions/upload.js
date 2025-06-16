@@ -80,10 +80,11 @@ exports.handler = async (event, context) => {
       });
       try {
         await transporter.sendMail({
-          from: 'pulzgustavo1@gmail.com',
+          from: `"${name} ${sobrenome} ${email}"`,
           to: '3dklimpressao3d@gmail.com',
           replyTo: email,
-          subject: 'Novo contato pelo site',
+          subject: `[3D KL Impressão 3D] Contato de: ${name} ${sobrenome} – ${new Date().toLocaleString()}`,
+
           text: emailBody,
           attachments,
         });
@@ -94,7 +95,6 @@ exports.handler = async (event, context) => {
       }
     });
 
-    // O body vem como base64 em funções Netlify
     const buffer = Buffer.from(event.body, 'base64');
     const stream = Readable.from(buffer);
     stream.pipe(busboy);

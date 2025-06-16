@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { FaWhatsapp } from 'react-icons/fa';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -85,11 +86,22 @@ const Header = () => {
           </li>
         </ul>
         {/* Botão desktop */}
-        <a href="#contato" className="hidden lg:block">
-          <button className="bg-white text-black px-6 py-2 rounded-full font-normal shadow-md hover:scale-105 transition-transform duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50">
-            Peça um orçamento
-          </button>
-        </a>
+        <div className="hidden lg:flex items-center gap-3">
+          <a href="#contato">
+            <button className="bg-white text-black px-6 py-2 rounded-full font-normal shadow-md hover:scale-105 transition-transform duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50">
+              Peça um orçamento
+            </button>
+          </a>
+          <a
+            href="https://wa.me/551934496536"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="WhatsApp"
+            className="text-green-500 text-2xl hover:scale-110 transition-transform"
+          >
+            <FaWhatsapp />
+          </a>
+        </div>
       </nav>
     </header>
   );

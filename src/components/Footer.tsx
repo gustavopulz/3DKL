@@ -1,4 +1,5 @@
 import { FaFacebookF, FaInstagram } from 'react-icons/fa';
+import { FaTiktok } from 'react-icons/fa6';
 
 const Footer = () => (
   <footer className="bg-black text-white pt-12 pb-6 px-4 md:px-0 overflow-x-hidden">
@@ -55,6 +56,15 @@ const Footer = () => (
             className="hover:text-[#E4405F] transition text-xl"
           >
             <FaInstagram />
+          </a>
+          <a
+            href="https://www.tiktok.com/@3dklimpressao3d"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="TikTok"
+            className="hover:text-blue-300 transition text-xl"
+          >
+            <FaTiktok />
           </a>
         </div>
       </div>
