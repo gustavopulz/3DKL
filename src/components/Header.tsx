@@ -93,7 +93,7 @@ const Header = () => {
             </button>
           </a>
           <a
-            href="https://wa.me/551934496536"
+            href="https://wa.me/1934496536"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="WhatsApp"

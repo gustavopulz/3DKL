@@ -498,7 +498,7 @@ const Home = () => {
         msg += `Possui arquivo para anexo: Sim (enviar por e-mail)%0A`;
       else msg += `Possui arquivo para anexo: Não%0A`;
       // Número do WhatsApp
-      const phone = '19997404451';
+      const phone = '1934496536';
       const url = `https://wa.me/${phone}?text=${msg}`;
       window.open(url, '_blank');
     }
@@ -958,7 +958,7 @@ const Home = () => {
                       Peça um Orçamento
                     </h4>
                     <a
-                      href="https://wa.me/19997404451" // Substitua pelo número real
+                      href="https://wa.me/1934496536" // Substitua pelo número real
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full font-medium shadow transition"
@@ -1020,7 +1020,7 @@ const Home = () => {
                     </h4>
                   </div>
                   <a
-                    href="https://wa.me/19997404451"
+                    href="https://wa.me/1934496536"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex md:hidden items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full font-medium shadow transition mb-4"
