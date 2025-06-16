@@ -1,6 +1,6 @@
 import React from 'react';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
-import whatsappIcon from '/public/whatsapp.svg';
+import whatsappIcon from '/whatsapp.svg';
 import { useNavigate } from 'react-router-dom';
 
 function useInView<T extends HTMLElement = HTMLElement>(
@@ -161,7 +161,7 @@ function VantagensCarousel() {
                 (typeof window !== 'undefined' && window.innerWidth < 768)) &&
                 i === 0 && (
                   <button
-                    className="absolute left-[-32px] md:left-[-48px] bg-black/60 rounded-full p-2 text-white hover:bg-black/80 transition z-10 top-1/2 -translate-y-1/2 md:opacity-100"
+                    className="absolute left-[-32px] md:left-[-32px] bg-black/60 rounded-full p-2 text-white hover:bg-black/80 transition z-10 top-1/2 -translate-y-1/2 md:opacity-100"
                     onClick={prev}
                     aria-label="Anterior"
                     type="button"
@@ -175,7 +175,7 @@ function VantagensCarousel() {
                 (typeof window !== 'undefined' && window.innerWidth < 768)) &&
                 i === visibleImages.length - 1 && (
                   <button
-                    className="absolute right-[-32px] md:right-[-48px] bg-black/60 rounded-full p-2 text-white hover:bg-black/80 transition z-10 top-1/2 -translate-y-1/2 md:opacity-100"
+                    className="absolute right-[-32px] md:right-[-32px] bg-black/60 rounded-full p-2 text-white hover:bg-black/80 transition z-10 top-1/2 -translate-y-1/2 md:opacity-100"
                     onClick={next}
                     aria-label="Próximo"
                     type="button"
@@ -339,7 +339,7 @@ function DepoimentosCarousel() {
     currentGroup * groupSize,
     currentGroup * groupSize + groupSize
   );
-  // Se chegar ao final e faltar depoimentos, completa do início
+
   while (visible.length < groupSize) {
     visible.push(depoimentos[visible.length]);
   }
@@ -349,7 +349,7 @@ function DepoimentosCarousel() {
         className={`w-full flex items-center justify-center relative px-0 md:px-0 group`}
       >
         <button
-          className="absolute left-[-32px] md:left-[-48px] bg-black/60 rounded-full p-2 text-white hover:bg-black/80 transition z-10 top-1/2 -translate-y-1/2 md:opacity-0 md:group-hover:opacity-100 md:pointer-events-none md:group-hover:pointer-events-auto"
+          className="absolute left-[-32px] md:left-[-32px] bg-black/60 rounded-full p-2 text-white hover:bg-black/80 transition z-10 top-1/2 -translate-y-1/2 md:opacity-0 md:group-hover:opacity-100 md:pointer-events-none md:group-hover:pointer-events-auto"
           onClick={prev}
           aria-label="Anterior"
           type="button"
@@ -369,7 +369,7 @@ function DepoimentosCarousel() {
           ))}
         </div>
         <button
-          className="absolute right-[-32px] md:right-[-48px] bg-black/60 rounded-full p-2 text-white hover:bg-black/80 transition z-10 top-1/2 -translate-y-1/2 md:opacity-0 md:group-hover:opacity-100 md:pointer-events-none md:group-hover:pointer-events-auto"
+          className="absolute right-[-32px] md:right-[-32px] bg-black/60 rounded-full p-2 text-white hover:bg-black/80 transition z-10 top-1/2 -translate-y-1/2 md:opacity-0 md:group-hover:opacity-100 md:pointer-events-none md:group-hover:pointer-events-auto"
           onClick={next}
           aria-label="Próximo"
           type="button"
@@ -399,21 +399,20 @@ const Home = () => {
   >(null);
 
   const [form, setForm] = React.useState({
-    nome: '',
+    name: '',
     sobrenome: '',
     email: '',
-    telefone: '',
+    phone: '',
     empresa: '',
     descricao: '',
-    mensagem: '',
-    temProjeto: false, // Adicionado para suportar o checkbox
+    message: '',
+    temProjeto: false,
   });
   const [file, setFile] = React.useState<File | null>(null);
   const navigate = useNavigate();
   const [errors, setErrors] = React.useState<any>({});
 
   function formatPhone(value: string) {
-    // Remove tudo que não for número
     let v = value.replace(/\D/g, '');
     if (v.length > 11) v = v.slice(0, 11);
     if (v.length > 6)
@@ -425,43 +424,59 @@ const Home = () => {
 
   function validateForm() {
     const newErrors: any = {};
-    if (!form.nome.trim()) newErrors.nome = 'O campo Nome é obrigatório';
+    if (!form.name.trim()) newErrors.name = 'O campo Nome é obrigatório';
     if (!form.sobrenome.trim())
       newErrors.sobrenome = 'O campo Sobrenome é obrigatório';
     if (!form.email.trim() || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(form.email))
       newErrors.email = 'O E-mail inserido é inválido';
-    if (!form.telefone.trim() || form.telefone.replace(/\D/g, '').length < 10)
-      newErrors.telefone = 'O campo Telefone é obrigatório';
+    if (!form.phone.trim() || form.phone.replace(/\D/g, '').length < 10)
+      newErrors.phone = 'O campo Telefone é obrigatório';
     if (!form.descricao.trim())
       newErrors.descricao = 'O campo Descrição é obrigatório';
-    if (!form.mensagem.trim())
-      newErrors.mensagem = 'O campo Mensagem é obrigatório';
-    // Só exige anexo se temProjeto estiver marcado
+    if (!form.message.trim())
+      newErrors.message = 'O campo Mensagem é obrigatório';
     if (form.temProjeto && !file) newErrors.anexo = 'Anexe um arquivo';
     return newErrors;
   }
 
   function handleChangeTelefone(e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.target.value;
-    setForm((f) => ({ ...f, telefone: formatPhone(value) }));
+    setForm((f) => ({ ...f, phone: formatPhone(value) }));
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const validation = validateForm();
     setErrors(validation);
     if (Object.keys(validation).length === 0) {
-      // Simulação de envio de e-mail (substitua pela lógica real)
-      fakeSendEmail().then(() => navigate('/Ty-F'));
+      const formData = new FormData();
+      formData.append('name', form.name);
+      formData.append('sobrenome', form.sobrenome);
+      formData.append('email', form.email);
+      formData.append('phone', form.phone);
+      formData.append('empresa', form.empresa);
+      formData.append('descricao', form.descricao);
+      formData.append('message', form.message);
+      if (file) {
+        formData.append('file', file); // Garante que o campo é 'file'
+      }
+      try {
+        const response = await fetch(
+          'https://3dklbackend.netlify.app/.netlify/functions/upload',
+          {
+            method: 'POST',
+            body: formData,
+          }
+        );
+        if (response.ok) {
+          navigate('/Ty-F');
+        } else {
+          alert('Erro ao enviar o formulário. Tente novamente.');
+        }
+      } catch (err) {
+        alert('Erro ao enviar o formulário. Tente novamente.');
+      }
     }
-  }
-
-  function fakeSendEmail() {
-    return new Promise<void>((resolve) => {
-      setTimeout(() => {
-        resolve();
-      }, 1000);
-    });
   }
 
   return (
@@ -1001,17 +1016,17 @@ const Home = () => {
                         <div className="relative">
                           <input
                             id="nome"
-                            name="nome"
+                            name="name"
                             type="text"
-                            className={`w-full rounded px-3 py-2 border ${errors.nome ? 'border-red-500' : 'border-[#808080]'} focus:outline-none focus:border-orange-500 peer placeholder-transparent bg-transparent`}
+                            className={`w-full rounded px-3 py-2 border ${errors.name ? 'border-red-500' : 'border-[#808080]'} focus:outline-none focus:border-orange-500 peer placeholder-transparent bg-transparent`}
                             placeholder="Nome"
-                            value={form.nome}
+                            value={form.name}
                             onChange={(e) => {
-                              setForm((f) => ({ ...f, nome: e.target.value }));
-                              if (errors.nome && e.target.value.trim()) {
+                              setForm((f) => ({ ...f, name: e.target.value }));
+                              if (errors.name && e.target.value.trim()) {
                                 setErrors((errs: any) => ({
                                   ...errs,
-                                  nome: undefined,
+                                  name: undefined,
                                 }));
                               }
                             }}
@@ -1025,9 +1040,9 @@ const Home = () => {
                           >
                             Nome <span className="text-red-500">*</span>
                           </label>
-                          {errors.nome && (
+                          {errors.name && (
                             <span className="text-red-500 text-xs mt-1 block">
-                              {errors.nome}
+                              {errors.name}
                             </span>
                           )}
                         </div>
@@ -1036,7 +1051,7 @@ const Home = () => {
                             id="sobrenome"
                             name="sobrenome"
                             type="text"
-                            className={`w-full rounded px-3 py-2 border ${errors.nome ? 'border-red-500' : 'border-[#808080]'} focus:outline-none focus:border-orange-500 peer placeholder-transparent bg-transparent`}
+                            className={`w-full rounded px-3 py-2 border ${errors.name ? 'border-red-500' : 'border-[#808080]'} focus:outline-none focus:border-orange-500 peer placeholder-transparent bg-transparent`}
                             placeholder="Sobrenome"
                             value={form.sobrenome}
                             onChange={(e) => {
@@ -1110,20 +1125,20 @@ const Home = () => {
                         <div className="relative">
                           <input
                             id="telefone"
-                            name="telefone"
+                            name="phone"
                             type="tel"
-                            className={`w-full rounded px-3 py-2 border ${errors.telefone ? 'border-red-500' : 'border-[#808080]'} focus:outline-none focus:border-orange-500 peer placeholder-transparent bg-transparent`}
+                            className={`w-full rounded px-3 py-2 border ${errors.phone ? 'border-red-500' : 'border-[#808080]'} focus:outline-none focus:border-orange-500 peer placeholder-transparent bg-transparent`}
                             placeholder="Telefone"
-                            value={form.telefone}
+                            value={form.phone}
                             onChange={(e) => {
                               handleChangeTelefone(e);
                               if (
-                                errors.telefone &&
+                                errors.phone &&
                                 e.target.value.replace(/\D/g, '').length >= 10
                               ) {
                                 setErrors((errs: any) => ({
                                   ...errs,
-                                  telefone: undefined,
+                                  phone: undefined,
                                 }));
                               }
                             }}
@@ -1137,9 +1152,9 @@ const Home = () => {
                           >
                             Telefone <span className="text-red-500">*</span>
                           </label>
-                          {errors.telefone && (
+                          {errors.phone && (
                             <span className="text-red-500 text-xs mt-1 block">
-                              {errors.telefone}
+                              {errors.phone}
                             </span>
                           )}
                         </div>
@@ -1208,20 +1223,20 @@ peer-[&:not(:placeholder-shown)]:-top-5 peer-[&:not(:placeholder-shown)]:text-xs
                       <div className="relative mt-6">
                         <textarea
                           id="mensagem"
-                          name="mensagem"
+                          name="message"
                           rows={3}
-                          className={`w-full rounded px-3 py-2 border ${errors.mensagem ? 'border-red-500' : 'border-[#808080]'} focus:outline-none focus:border-orange-500 resize-none peer placeholder-transparent bg-transparent`}
+                          className={`w-full rounded px-3 py-2 border ${errors.message ? 'border-red-500' : 'border-[#808080]'} focus:outline-none focus:border-orange-500 resize-none peer placeholder-transparent bg-transparent`}
                           placeholder="Mensagem"
-                          value={form.mensagem}
+                          value={form.message}
                           onChange={(e) => {
                             setForm((f) => ({
                               ...f,
-                              mensagem: e.target.value,
+                              message: e.target.value,
                             }));
-                            if (errors.mensagem && e.target.value.trim()) {
+                            if (errors.message && e.target.value.trim()) {
                               setErrors((errs: any) => ({
                                 ...errs,
-                                mensagem: undefined,
+                                message: undefined,
                               }));
                             }
                           }}
@@ -1235,9 +1250,9 @@ peer-[&:not(:placeholder-shown)]:-top-5 peer-[&:not(:placeholder-shown)]:text-xs
                         >
                           Mensagem <span className="text-red-500">*</span>
                         </label>
-                        {errors.mensagem && (
+                        {errors.message && (
                           <span className="text-red-500 text-xs mt-1 block">
-                            {errors.mensagem}
+                            {errors.message}
                           </span>
                         )}
                       </div>
@@ -1275,21 +1290,17 @@ peer-[&:not(:placeholder-shown)]:-top-5 peer-[&:not(:placeholder-shown)]:text-xs
                           </label>
                           <input
                             id="anexo"
-                            name="anexo"
+                            name="file"
                             type="file"
                             accept=".stl,.obj,.step,.jpg,.jpeg,.png,.gif,.bmp,.svg,.pdf"
                             className={`w-full rounded px-3 py-2 border ${errors.anexo ? 'border-red-500' : 'border-[#808080]'} focus:outline-none focus:border-orange-500 bg-transparent text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-orange-500 file:text-white hover:file:bg-orange-600 cursor-pointer file:cursor-pointer`}
                             onChange={(e) => {
-                              setFile(
+                              const selectedFile =
                                 e.target.files && e.target.files[0]
                                   ? e.target.files[0]
-                                  : null
-                              );
-                              if (
-                                errors.anexo &&
-                                e.target.files &&
-                                e.target.files[0]
-                              ) {
+                                  : null;
+                              setFile(selectedFile);
+                              if (errors.anexo && selectedFile) {
                                 setErrors((errs: any) => ({
                                   ...errs,
                                   anexo: undefined,
