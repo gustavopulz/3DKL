@@ -101,7 +101,11 @@ function FaqItem({
 
 // NOVO COMPONENTE: Carrossel de Vantagens
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-function VantagensCarousel() {
+function VantagensCarousel({
+  onImageClick,
+}: {
+  onImageClick: (src: string) => void;
+}) {
   const imagens = [
     '/vantagens/img2.png',
     '/vantagens/img3.jpg',
@@ -138,7 +142,7 @@ function VantagensCarousel() {
     '/vantagens/img34.jpg',
     '/vantagens/img35.jpg',
     '/vantagens/img36.jpg',
-    '/vantagens/img36.jpg',
+    '/vantagens/img37.jpg',
   ];
   const [index, setIndex] = React.useState(0);
   const [hover, setHover] = React.useState(false);
@@ -225,6 +229,7 @@ function VantagensCarousel() {
                   ...(window.innerWidth <= 640 ? { width: '250px' } : {}),
                 }}
                 title="Clique para expandir"
+                onClick={() => onImageClick(imagens[imgIdx])}
               />
             </div>
           ))}
@@ -345,6 +350,115 @@ function DepoimentosCarousel() {
       ),
       role: '',
     },
+    // Novos depoimentos adicionados abaixo
+    {
+      text: '"Só tenho a agradecer o atendimento e a paciência do vendedor. O produto é sensacional veio tudo certinho e muito bem embalado !! Recomendo !!"',
+      name: (
+        <>
+          JVitor
+          <div className="flex items-start mt-1">
+            {Array(5)
+              .fill(0)
+              .map((_, i) => (
+                <span key={i} className="text-yellow-400 text-lg">
+                  ★
+                </span>
+              ))}
+          </div>
+        </>
+      ),
+      role: '',
+    },
+    {
+      text: '"Excelente atendimento, teve atenção aos detalhes da minha procura e foi sincero sobre o valor do orçamento. Certamente procurarei os serviços de vocês num futuro próximo!"',
+      name: (
+        <>
+          Vitor Minetto
+          <div className="flex items-start mt-1">
+            {Array(5)
+              .fill(0)
+              .map((_, i) => (
+                <span key={i} className="text-yellow-400 text-lg">
+                  ★
+                </span>
+              ))}
+          </div>
+        </>
+      ),
+      role: '',
+    },
+    {
+      text: '"Excelente atendimento, muito explicativo e solícito! Sou de outra cidade e preferi pedir pelo fantástico atendimento e atenção! Recomendo muito!!!"',
+      name: (
+        <>
+          Raphael Palombo
+          <div className="flex items-start mt-1">
+            {Array(5)
+              .fill(0)
+              .map((_, i) => (
+                <span key={i} className="text-yellow-400 text-lg">
+                  ★
+                </span>
+              ))}
+          </div>
+        </>
+      ),
+      role: '',
+    },
+    {
+      text: '"Ótimo atendimento, enviei o projeto validaram tudo antes de fazer, assim que ficou pronto já me mandaram fotos e realizaram o envio, tudo com muita agilidade."',
+      name: (
+        <>
+          Marden Almeida
+          <div className="flex items-start mt-1">
+            {Array(5)
+              .fill(0)
+              .map((_, i) => (
+                <span key={i} className="text-yellow-400 text-lg">
+                  ★
+                </span>
+              ))}
+          </div>
+        </>
+      ),
+      role: '',
+    },
+    {
+      text: '"Empresa séria com melhor atendimento !! Certamente voltarei a fazer negócios"',
+      name: (
+        <>
+          Hilda Helena Piccirillo Gonçalves
+          <div className="flex items-start mt-1">
+            {Array(5)
+              .fill(0)
+              .map((_, i) => (
+                <span key={i} className="text-yellow-400 text-lg">
+                  ★
+                </span>
+              ))}
+          </div>
+        </>
+      ),
+      role: '',
+    },
+    {
+      text: '"Passando pra fazer a avaliação da impressão 3D, ficou perfeita, , só agradeço pela atenção e observando os ajustes feitos no projeto conforme eu pedi !"',
+      name: (
+        <>
+          Betico Marcondes
+          <div className="flex items-start mt-1">
+            {Array(5)
+              .fill(0)
+              .map((_, i) => (
+                <span key={i} className="text-yellow-400 text-lg">
+                  ★
+                </span>
+              ))}
+          </div>
+        </>
+      ),
+      role: '',
+    },
   ];
   // Novo: responsivo para quantidade de cards
   const getGroupSize = () => {
@@ -441,6 +555,9 @@ const Home = () => {
   const [file, setFile] = React.useState<File | null>(null);
   const navigate = useNavigate();
   const [errors, setErrors] = React.useState<any>({});
+
+  // Estado para modal de imagem do slide
+  const [modalImage, setModalImage] = React.useState<string | null>(null);
 
   function formatPhone(value: string) {
     let v = value.replace(/\D/g, '');
@@ -945,11 +1062,31 @@ const Home = () => {
                 </div>
                 {/* Slide de imagens */}
                 <div className="w-full flex justify-center">
-                  <VantagensCarousel />
+                  <VantagensCarousel onImageClick={setModalImage} />
                 </div>
               </div>
             </section>
           </SectionInView>
+          {modalImage && (
+            <div className="fixed inset-0 z-50 bg-black bg-opacity-60 flex items-center justify-center">
+              {/* Botão fixo no canto superior direito da tela */}
+              <button
+                className="absolute top-4 right-4 text-white hover:text-orange-500 text-3xl w-10 h-10 flex items-center justify-center z-50"
+                onClick={() => setModalImage(null)}
+              >
+                &times;
+              </button>
+
+              {/* Imagem centralizada */}
+              <div className="relative flex items-center justify-center">
+                <img
+                  src={modalImage}
+                  alt="Imagem ampliada"
+                  className="rounded-lg max-h-[80vh] max-w-full shadow-lg border-2 border-[#808080]"
+                />
+              </div>
+            </div>
+          )}
 
           {/* Seção de Clientes */}
           <section
