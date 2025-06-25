@@ -107,7 +107,7 @@ function VantagensCarousel({
   onImageClick: (src: string) => void;
 }) {
   const imagens = [
-    '/vantagens/boneco1.jpg',
+    '/vantagens/boneco1.png',
     '/vantagens/boneco2.jpg',
     '/vantagens/boneco3.jpg',
     '/vantagens/boneco4.jpg',
@@ -121,7 +121,7 @@ function VantagensCarousel({
     '/vantagens/caixa5.jpg',
     '/vantagens/caixa6.jpg',
     '/vantagens/caixa7.jpg',
-    '/vantagens/cahveiro1.jpg',
+    '/vantagens/chaveiro1.jpg',
 
     '/vantagens/estrutura1.jpg',
     '/vantagens/estrutura2.jpg',
@@ -152,7 +152,7 @@ function VantagensCarousel({
   // Define visibleCount dinamicamente conforme o tamanho da tela
   const getVisibleCount = () => {
     if (typeof window !== 'undefined' && window.innerWidth < 768) {
-      return 2;
+      return 1;
     }
     return 6;
   };
@@ -229,7 +229,7 @@ function VantagensCarousel({
                   backgroundImage: `url(${imagens[imgIdx]})`,
                   width: '220px',
                   height: '250px',
-                  ...(window.innerWidth <= 640 ? { width: '250px' } : {}),
+                  ...(window.innerWidth <= 640 ? { width: '300px', height: '300px', marginTop: '50px', marginBottom: '30px' } : {}),
                 }}
                 title="Clique para expandir"
                 onClick={() => onImageClick(imagens[imgIdx])}
