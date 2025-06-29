@@ -1128,7 +1128,7 @@ const Home = () => {
                       Peça um Orçamento
                     </h4>
                     <a
-                      href="https://wa.me/1934496536" // Substitua pelo número real
+                      href="https://wa.me/1934496536?text=Olá%2C%20tudo%20bem%3F%20Vim%20pelo%20site%2C%20gostaria%20de%20um%20orçamento%21"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full font-medium shadow transition"
@@ -1190,7 +1190,7 @@ const Home = () => {
                     </h4>
                   </div>
                   <a
-                    href="https://wa.me/1934496536"
+                    href="https://wa.me/1934496536?text=Olá%2C%20tudo%20bem%3F%20Vim%20pelo%20site%2C%20gostaria%20de%20um%20orçamento%21"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex md:hidden items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full font-medium shadow transition mb-4"
@@ -1202,6 +1202,7 @@ const Home = () => {
                     />
                     Whatsapp
                   </a>
+        
                   <form
                     className="bg-black/50 rounded-lg p-8 shadow text-white flex flex-col gap-4 w-full justify-between border-0 border-[#808080] mt-0 h-full"
                     onSubmit={handleSubmit}
@@ -1531,6 +1532,21 @@ peer-[&:not(:placeholder-shown)]:-top-5 peer-[&:not(:placeholder-shown)]:text-xs
                       Enviar por Whatsapp
                     </button>
                   </form>
+                  <br></br>
+                  {/* Notificação de horário de funcionamento */}
+                  <div className="bg-orange-500/20 border border-orange-500 rounded-lg p-4 mb-6 text-sm text-orange-300">
+                    <div className="flex items-start gap-2">
+                      <span className="text-orange-500 text-lg">🕐</span>
+                      <div>
+                        <strong className="text-orange-400">Horário de funcionamento:</strong>
+                        <div className="mt-1 space-y-1">
+                          <div>Segunda a sexta-feira das 08:00 às 18:00</div>
+                          <div>Sábado das 08:00 às 12:00</div>
+                          <div>Horário de almoço das 12:00 às 13:30 (segunda a sexta)</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </section>
