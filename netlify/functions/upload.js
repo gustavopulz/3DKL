@@ -74,8 +74,8 @@ exports.handler = async (event, context) => {
       const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: 'pulzgustavo1@gmail.com', // Substitua pelo seu e-mail Gmail
-          pass: 'zzfspnyoahzdhfyn', // Use senha de app do Gmail
+          user: '3dklimpressao3d@gmail.com', // Substitua pelo seu e-mail Gmail
+          pass: 'addhizijwtvgnhxl', // Use senha de app do Gmail
         },
       });
       try {

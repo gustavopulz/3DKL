@@ -31,7 +31,7 @@ const Footer = () => (
           (19) 3449-6536
         </p>
         <p className="text-gray-300 mt-1 w-full text-left md:text-center">
-          contato@3dkl.com.br
+          3dklimpressao3d@gmail.com
         </p>
       </div>
       <div className="flex flex-col items-start md:items-center">
