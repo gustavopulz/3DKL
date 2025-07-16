@@ -229,7 +229,14 @@ function VantagensCarousel({
                   backgroundImage: `url(${imagens[imgIdx]})`,
                   width: '220px',
                   height: '250px',
-                  ...(window.innerWidth <= 640 ? { width: '300px', height: '300px', marginTop: '50px', marginBottom: '30px' } : {}),
+                  ...(window.innerWidth <= 640
+                    ? {
+                        width: '300px',
+                        height: '300px',
+                        marginTop: '50px',
+                        marginBottom: '30px',
+                      }
+                    : {}),
                 }}
                 title="Clique para expandir"
                 onClick={() => onImageClick(imagens[imgIdx])}
@@ -743,8 +750,8 @@ const Home = () => {
                   alt: 'Impressão 3D personalizada',
                 },
                 {
-                  title: 'Serviços de modelagem 3D',
-                  desc: 'Oferecemos serviço completo de criação e impressão 3D. Desenvolvemos seu modelo 3D do zero e imprimimos com alta qualidade. Ideal para quem não tem um modelo pronto. Soluções personalizadas!!',
+                  title: 'Serviço de modelagem 3D e Escaneamento 3D',
+                  desc: 'Desenvolvemos peças personalizadas e para reposição! Digitalização 3D, engenharia reversa, modelagem 3D técnica e modelagem 3D orgânica. Oferecemos serviço completo de criação e impressão 3D com alta qualidade. Ideal para quem não tem um modelo pronto ou deseja reparar algum produto. Soluções personalizadas!',
                   img: '/modelagem.png',
                   alt: 'Serviços de modelagem 3D',
                 },
@@ -1202,7 +1209,7 @@ const Home = () => {
                     />
                     Whatsapp
                   </a>
-        
+
                   <form
                     className="bg-black/50 rounded-lg p-8 shadow text-white flex flex-col gap-4 w-full justify-between border-0 border-[#808080] mt-0 h-full"
                     onSubmit={handleSubmit}
@@ -1538,11 +1545,16 @@ peer-[&:not(:placeholder-shown)]:-top-5 peer-[&:not(:placeholder-shown)]:text-xs
                     <div className="flex items-start gap-2">
                       <span className="text-orange-500 text-lg">🕐</span>
                       <div>
-                        <strong className="text-orange-400">Horário de funcionamento:</strong>
+                        <strong className="text-orange-400">
+                          Horário de funcionamento:
+                        </strong>
                         <div className="mt-1 space-y-1">
                           <div>Segunda a sexta-feira das 08:00 às 18:00</div>
                           <div>Sábado das 08:00 às 12:00</div>
-                          <div>Horário de almoço das 12:00 às 13:30 (segunda a sexta)</div>
+                          <div>
+                            Horário de almoço das 12:00 às 13:30 (segunda a
+                            sexta)
+                          </div>
                         </div>
                       </div>
                     </div>
