@@ -1495,7 +1495,7 @@ peer-[&:not(:placeholder-shown)]:-top-5 peer-[&:not(:placeholder-shown)]:text-xs
                             id="anexo"
                             name="file"
                             type="file"
-                            accept=".stl,.obj,.step,.jpg,.jpeg,.png,.gif,.bmp,.svg,.pdf"
+                            accept=".stl,.obj,.step,.jpg,.jpeg,.png,.gif,.bmp,.svg,.pdf,.rar,.zip"
                             className={`w-full rounded px-3 py-2 border ${errors.anexo ? 'border-red-500' : 'border-[#808080]'} focus:outline-none focus:border-orange-500 bg-transparent text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-orange-500 file:text-white hover:file:bg-orange-600 cursor-pointer file:cursor-pointer`}
                             onChange={(e) => {
                               const selectedFile =
