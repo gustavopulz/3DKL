@@ -1517,7 +1517,7 @@ peer-[&:not(:placeholder-shown)]:-top-5 peer-[&:not(:placeholder-shown)]:text-xs
                             </span>
                           )}
                           <span className="text-xs text-[#808080] block mt-1">
-                            Aceitamos apenas STL, OBJ, STEP ou imagens/desenhos.
+                            Aceitamos apenas STL, OBJ, STEP, ZIP, RAR ou imagens/desenhos.
                           </span>
                         </div>
                       )}
